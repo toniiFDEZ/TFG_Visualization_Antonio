@@ -1,0 +1,23 @@
+{% extends "padre.html" %} 
+  
+{% block lateral %}
+  {% if nombre != null %}
+  <h5>¡Hola {{ nombre }}!</h5>
+  {% else %}
+  <h5>¡Hola, Mundo!</h5>
+  {% endif %}
+{% endblock %}
+
+{% block cuerpo %}
+  <div id="my_dataviz"></div>
+{% endblock %}
+
+{% block javascript %}  
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  
+  <!-- specific plugin -->
+  <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+
+  <script src="../static/scripts/diagramaDensidad.js"></script>
+{% endblock %}

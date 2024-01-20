@@ -1,0 +1,39 @@
+{% extends "padre.html" %} 
+
+{% block estilos %}
+    <link type='text/css' rel='stylesheet' href='../static/styles/padre.css' media='screen'>
+    <link type='text/css' rel='stylesheet' href='../static/styles/dobleDiagrama.css'>
+{% endblock %}
+  
+{% block lateral %}
+  {% if nombre != null %}
+  <h5>¡Hola {{ nombre }}!</h5>
+  {% else %}
+  <h5>¡Hola, Mundo!</h5>
+  {% endif %}
+{% endblock %}
+
+{% block cuerpo %}
+  <div id="my_dataviz">
+    <div class="visualization">
+        <div id="pieChart"></div>
+        <br>
+        <div id="barChart"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}  
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <script>
+    const pieChartDataUrl = "{{ url_for('dataload.get_piechart_data') }}";
+    const barChartDataUrl = "{{ url_for('dataload.get_barchart_data') }}";
+  </script>
+
+  <script src="{{ url_for('static', filename='scripts/pieChart.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/barChart.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/updateBarChart.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/promises_pieBarCharts.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,430 @@
+{
+    "nodes": [
+        {
+            "id": 0,
+            "label": "Age_Very_young"
+        },
+        {
+            "id": 1,
+            "label": "Outcome_0"
+        },
+        {
+            "id": 2,
+            "label": "Age_Young"
+        },
+        {
+            "id": 3,
+            "label": "BMI_Very_low"
+        },
+        {
+            "id": 4,
+            "label": "Insulin_Very_low"
+        },
+        {
+            "id": 5,
+            "label": "BloodPressure_High"
+        },
+        {
+            "id": 6,
+            "label": "DiabetesPedigreeFunction_Very_low"
+        },
+        {
+            "id": 7,
+            "label": "Glucose_Low"
+        },
+        {
+            "id": 8,
+            "label": "Glucose_Very_low"
+        },
+        {
+            "id": 9,
+            "label": "Outcome_1"
+        },
+        {
+            "id": 10,
+            "label": "Pregnancies_High"
+        },
+        {
+            "id": 11,
+            "label": "SkinThickness_Very_low"
+        },
+        {
+            "id": 12,
+            "label": "Pregnancies_Average"
+        },
+        {
+            "id": 13,
+            "label": "Insulin_Very_low, Outcome_0"
+        },
+        {
+            "id": 14,
+            "label": "Insulin_Very_low, SkinThickness_Very_low"
+        },
+        {
+            "id": 15,
+            "label": "Outcome_0, SkinThickness_Very_low"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "source": "Age_Very_young",
+            "target": "Outcome_0",
+            "confidence": 0.8814814814814814,
+            "support": 0.15494791666666666,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.3539555555555556
+        },
+        {
+            "id": 1,
+            "source": "Outcome_0",
+            "target": "Age_Very_young",
+            "confidence": 0.238,
+            "support": 0.15494791666666666,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.17578125,
+            "lift": 1.3539555555555556
+        },
+        {
+            "id": 2,
+            "source": "Age_Young",
+            "target": "Outcome_0",
+            "confidence": 0.7757575757575758,
+            "support": 0.16666666666666666,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.1915636363636364
+        },
+        {
+            "id": 3,
+            "source": "Outcome_0",
+            "target": "Age_Young",
+            "confidence": 0.256,
+            "support": 0.16666666666666666,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.21484375,
+            "lift": 1.1915636363636364
+        },
+        {
+            "id": 4,
+            "source": "BMI_Very_low",
+            "target": "Outcome_0",
+            "confidence": 0.9121621621621622,
+            "support": 0.17578125,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.4010810810810812
+        },
+        {
+            "id": 5,
+            "source": "Outcome_0",
+            "target": "BMI_Very_low",
+            "confidence": 0.27,
+            "support": 0.17578125,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.19270833333333334,
+            "lift": 1.4010810810810812
+        },
+        {
+            "id": 6,
+            "source": "Insulin_Very_low",
+            "target": "BloodPressure_High",
+            "confidence": 0.25162689804772237,
+            "support": 0.15104166666666666,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.23958333333333334,
+            "lift": 1.050268791851363
+        },
+        {
+            "id": 7,
+            "source": "BloodPressure_High",
+            "target": "Insulin_Very_low",
+            "confidence": 0.6304347826086956,
+            "support": 0.15104166666666666,
+            "antecedent supp": 0.23958333333333334,
+            "consequent supp": 0.6002604166666666,
+            "lift": 1.0502687918513627
+        },
+        {
+            "id": 8,
+            "source": "BloodPressure_High",
+            "target": "Outcome_0",
+            "confidence": 0.6413043478260869,
+            "support": 0.15364583333333334,
+            "antecedent supp": 0.23958333333333334,
+            "consequent supp": 0.6510416666666666,
+            "lift": 0.9850434782608696
+        },
+        {
+            "id": 9,
+            "source": "Outcome_0",
+            "target": "BloodPressure_High",
+            "confidence": 0.23600000000000002,
+            "support": 0.15364583333333334,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.23958333333333334,
+            "lift": 0.9850434782608696
+        },
+        {
+            "id": 10,
+            "source": "DiabetesPedigreeFunction_Very_low",
+            "target": "Outcome_0",
+            "confidence": 0.7792207792207791,
+            "support": 0.15625,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.1968831168831169
+        },
+        {
+            "id": 11,
+            "source": "Outcome_0",
+            "target": "DiabetesPedigreeFunction_Very_low",
+            "confidence": 0.24000000000000002,
+            "support": 0.15625,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.20052083333333334,
+            "lift": 1.1968831168831169
+        },
+        {
+            "id": 12,
+            "source": "Glucose_Low",
+            "target": "Outcome_0",
+            "confidence": 0.8193548387096775,
+            "support": 0.16536458333333334,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.2585290322580647
+        },
+        {
+            "id": 13,
+            "source": "Outcome_0",
+            "target": "Glucose_Low",
+            "confidence": 0.254,
+            "support": 0.16536458333333334,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.20182291666666666,
+            "lift": 1.2585290322580647
+        },
+        {
+            "id": 14,
+            "source": "Glucose_Very_low",
+            "target": "Insulin_Very_low",
+            "confidence": 0.8299319727891156,
+            "support": 0.15885416666666666,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.6002604166666666,
+            "lift": 1.382619859223516
+        },
+        {
+            "id": 15,
+            "source": "Insulin_Very_low",
+            "target": "Glucose_Very_low",
+            "confidence": 0.2646420824295011,
+            "support": 0.15885416666666666,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.19140625,
+            "lift": 1.382619859223516
+        },
+        {
+            "id": 16,
+            "source": "Glucose_Very_low",
+            "target": "Outcome_0",
+            "confidence": 0.9251700680272109,
+            "support": 0.17708333333333334,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.421061224489796
+        },
+        {
+            "id": 17,
+            "source": "Outcome_0",
+            "target": "Glucose_Very_low",
+            "confidence": 0.272,
+            "support": 0.17708333333333334,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.19140625,
+            "lift": 1.421061224489796
+        },
+        {
+            "id": 18,
+            "source": "Insulin_Very_low",
+            "target": "Outcome_0",
+            "confidence": 0.6854663774403471,
+            "support": 0.4114583333333333,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.0528763557483731
+        },
+        {
+            "id": 19,
+            "source": "Outcome_0",
+            "target": "Insulin_Very_low",
+            "confidence": 0.632,
+            "support": 0.4114583333333333,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.6002604166666666,
+            "lift": 1.0528763557483731
+        },
+        {
+            "id": 20,
+            "source": "Outcome_1",
+            "target": "Insulin_Very_low",
+            "confidence": 0.541044776119403,
+            "support": 0.18880208333333334,
+            "antecedent supp": 0.3489583333333333,
+            "consequent supp": 0.6002604166666666,
+            "lift": 0.9013500825590056
+        },
+        {
+            "id": 21,
+            "source": "Insulin_Very_low",
+            "target": "Outcome_1",
+            "confidence": 0.31453362255965295,
+            "support": 0.18880208333333334,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.3489583333333333,
+            "lift": 0.9013500825590055
+        },
+        {
+            "id": 22,
+            "source": "Pregnancies_High",
+            "target": "Insulin_Very_low",
+            "confidence": 0.6914285714285714,
+            "support": 0.15755208333333334,
+            "antecedent supp": 0.22786458333333334,
+            "consequent supp": 0.6002604166666666,
+            "lift": 1.1518810040285095
+        },
+        {
+            "id": 23,
+            "source": "Insulin_Very_low",
+            "target": "Pregnancies_High",
+            "confidence": 0.262472885032538,
+            "support": 0.15755208333333334,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.22786458333333334,
+            "lift": 1.1518810040285097
+        },
+        {
+            "id": 24,
+            "source": "Insulin_Very_low",
+            "target": "SkinThickness_Very_low",
+            "confidence": 0.5661605206073753,
+            "support": 0.33984375,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.390625,
+            "lift": 1.4493709327548807
+        },
+        {
+            "id": 25,
+            "source": "SkinThickness_Very_low",
+            "target": "Insulin_Very_low",
+            "confidence": 0.87,
+            "support": 0.33984375,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.6002604166666666,
+            "lift": 1.4493709327548807
+        },
+        {
+            "id": 26,
+            "source": "Pregnancies_Average",
+            "target": "Outcome_0",
+            "confidence": 0.7415730337078651,
+            "support": 0.171875,
+            "antecedent supp": 0.23177083333333334,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.139056179775281
+        },
+        {
+            "id": 27,
+            "source": "Outcome_0",
+            "target": "Pregnancies_Average",
+            "confidence": 0.264,
+            "support": 0.171875,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.23177083333333334,
+            "lift": 1.139056179775281
+        },
+        {
+            "id": 28,
+            "source": "Outcome_0",
+            "target": "SkinThickness_Very_low",
+            "confidence": 0.40800000000000003,
+            "support": 0.265625,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.390625,
+            "lift": 1.04448
+        },
+        {
+            "id": 29,
+            "source": "SkinThickness_Very_low",
+            "target": "Outcome_0",
+            "confidence": 0.68,
+            "support": 0.265625,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.04448
+        },
+        {
+            "id": 30,
+            "source": "Insulin_Very_low, Outcome_0",
+            "target": "SkinThickness_Very_low",
+            "confidence": 0.5379746835443038,
+            "support": 0.22135416666666666,
+            "antecedent supp": 0.4114583333333333,
+            "consequent supp": 0.390625,
+            "lift": 1.3772151898734177
+        },
+        {
+            "id": 31,
+            "source": "Insulin_Very_low, SkinThickness_Very_low",
+            "target": "Outcome_0",
+            "confidence": 0.6513409961685823,
+            "support": 0.22135416666666666,
+            "antecedent supp": 0.33984375,
+            "consequent supp": 0.6510416666666666,
+            "lift": 1.0004597701149425
+        },
+        {
+            "id": 32,
+            "source": "Outcome_0, SkinThickness_Very_low",
+            "target": "Insulin_Very_low",
+            "confidence": 0.8333333333333333,
+            "support": 0.22135416666666666,
+            "antecedent supp": 0.265625,
+            "consequent supp": 0.6002604166666666,
+            "lift": 1.3882863340563991
+        },
+        {
+            "id": 33,
+            "source": "Insulin_Very_low",
+            "target": "Outcome_0, SkinThickness_Very_low",
+            "confidence": 0.368763557483731,
+            "support": 0.22135416666666666,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.265625,
+            "lift": 1.3882863340563991
+        },
+        {
+            "id": 34,
+            "source": "Outcome_0",
+            "target": "Insulin_Very_low, SkinThickness_Very_low",
+            "confidence": 0.34,
+            "support": 0.22135416666666666,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.33984375,
+            "lift": 1.0004597701149427
+        },
+        {
+            "id": 35,
+            "source": "SkinThickness_Very_low",
+            "target": "Insulin_Very_low, Outcome_0",
+            "confidence": 0.5666666666666667,
+            "support": 0.22135416666666666,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.4114583333333333,
+            "lift": 1.3772151898734177
+        }
+    ]
+}

@@ -1,0 +1,281 @@
+{
+    "nodes": [
+        {
+            "id": 0,
+            "label": "Bradycardia",
+            "group": 1
+        },
+        {
+            "id": 1,
+            "label": "Heart Block",
+            "group": 2
+        },
+        {
+            "id": 2,
+            "label": "Diabetes",
+            "group": 2
+        },
+        {
+            "id": 3,
+            "label": "Cardiac Arrest",
+            "group": 2
+        },
+        {
+            "id": 4,
+            "label": "Myocarditis",
+            "group": 1
+        },
+        {
+            "id": 5,
+            "label": "Obesity",
+            "group": 2
+        },
+        {
+            "id": 6,
+            "label": "Chest Pain",
+            "group": 1
+        },
+        {
+            "id": 7,
+            "label": "Hypertension",
+            "group": 1
+        },
+        {
+            "id": 8,
+            "label": "Myocarditis, Heart Block",
+            "group": 3
+        },
+        {
+            "id": 9,
+            "label": "Myocarditis, Cardiac Arrest",
+            "group": 3
+        },
+        {
+            "id": 10,
+            "label": "Heart Block, Cardiac Arrest",
+            "group": 3
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "source": "Bradycardia",
+            "target": "Heart Block",
+            "confidence": 1.0,
+            "support": 0.375,
+            "antecedent supp": 0.375,
+            "consequent supp": 0.75,
+            "lift": 1.3333333333333333
+        },
+        {
+            "id": 1,
+            "source": "Diabetes",
+            "target": "Cardiac Arrest",
+            "confidence": 0.6,
+            "support": 0.375,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.625,
+            "lift": 0.96
+        },
+        {
+            "id": 2,
+            "source": "Cardiac Arrest",
+            "target": "Diabetes",
+            "confidence": 0.6,
+            "support": 0.375,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.625,
+            "lift": 0.96
+        },
+        {
+            "id": 3,
+            "source": "Heart Block",
+            "target": "Cardiac Arrest",
+            "confidence": 0.6666666666666666,
+            "support": 0.5,
+            "antecedent supp": 0.75,
+            "consequent supp": 0.625,
+            "lift": 1.0666666666666667
+        },
+        {
+            "id": 4,
+            "source": "Cardiac Arrest",
+            "target": "Heart Block",
+            "confidence": 0.8,
+            "support": 0.5,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.75,
+            "lift": 1.0666666666666667
+        },
+        {
+            "id": 5,
+            "source": "Myocarditis",
+            "target": "Cardiac Arrest",
+            "confidence": 1.0,
+            "support": 0.5,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.625,
+            "lift": 1.6
+        },
+        {
+            "id": 6,
+            "source": "Cardiac Arrest",
+            "target": "Myocarditis",
+            "confidence": 0.8,
+            "support": 0.5,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.5,
+            "lift": 1.6
+        },
+        {
+            "id": 7,
+            "source": "Obesity",
+            "target": "Cardiac Arrest",
+            "confidence": 1.0,
+            "support": 0.375,
+            "antecedent supp": 0.375,
+            "consequent supp": 0.625,
+            "lift": 1.6
+        },
+        {
+            "id": 8,
+            "source": "Cardiac Arrest",
+            "target": "Obesity",
+            "confidence": 0.6,
+            "support": 0.375,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.375,
+            "lift": 1.5999999999999999
+        },
+        {
+            "id": 9,
+            "source": "Chest Pain",
+            "target": "Diabetes",
+            "confidence": 1.0,
+            "support": 0.375,
+            "antecedent supp": 0.375,
+            "consequent supp": 0.625,
+            "lift": 1.6
+        },
+        {
+            "id": 10,
+            "source": "Diabetes",
+            "target": "Chest Pain",
+            "confidence": 0.6,
+            "support": 0.375,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.375,
+            "lift": 1.5999999999999999
+        },
+        {
+            "id": 11,
+            "source": "Heart Block",
+            "target": "Diabetes",
+            "confidence": 0.6666666666666666,
+            "support": 0.5,
+            "antecedent supp": 0.75,
+            "consequent supp": 0.625,
+            "lift": 1.0666666666666667
+        },
+        {
+            "id": 12,
+            "source": "Diabetes",
+            "target": "Heart Block",
+            "confidence": 0.8,
+            "support": 0.5,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.75,
+            "lift": 1.0666666666666667
+        },
+        {
+            "id": 13,
+            "source": "Hypertension",
+            "target": "Heart Block",
+            "confidence": 0.75,
+            "support": 0.375,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.75,
+            "lift": 1.0
+        },
+        {
+            "id": 14,
+            "source": "Myocarditis",
+            "target": "Heart Block",
+            "confidence": 1.0,
+            "support": 0.5,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.75,
+            "lift": 1.3333333333333333
+        },
+        {
+            "id": 15,
+            "source": "Heart Block",
+            "target": "Myocarditis",
+            "confidence": 0.6666666666666666,
+            "support": 0.5,
+            "antecedent supp": 0.75,
+            "consequent supp": 0.5,
+            "lift": 1.3333333333333333
+        },
+        {
+            "id": 16,
+            "source": "Myocarditis, Heart Block",
+            "target": "Cardiac Arrest",
+            "confidence": 1.0,
+            "support": 0.5,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.625,
+            "lift": 1.6
+        },
+        {
+            "id": 17,
+            "source": "Myocarditis, Cardiac Arrest",
+            "target": "Heart Block",
+            "confidence": 1.0,
+            "support": 0.5,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.75,
+            "lift": 1.3333333333333333
+        },
+        {
+            "id": 18,
+            "source": "Heart Block, Cardiac Arrest",
+            "target": "Myocarditis",
+            "confidence": 1.0,
+            "support": 0.5,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.5,
+            "lift": 2.0
+        },
+        {
+            "id": 19,
+            "source": "Myocarditis",
+            "target": "Heart Block, Cardiac Arrest",
+            "confidence": 1.0,
+            "support": 0.5,
+            "antecedent supp": 0.5,
+            "consequent supp": 0.5,
+            "lift": 2.0
+        },
+        {
+            "id": 20,
+            "source": "Heart Block",
+            "target": "Myocarditis, Cardiac Arrest",
+            "confidence": 0.6666666666666666,
+            "support": 0.5,
+            "antecedent supp": 0.75,
+            "consequent supp": 0.5,
+            "lift": 1.3333333333333333
+        },
+        {
+            "id": 21,
+            "source": "Cardiac Arrest",
+            "target": "Myocarditis, Heart Block",
+            "confidence": 0.8,
+            "support": 0.5,
+            "antecedent supp": 0.625,
+            "consequent supp": 0.5,
+            "lift": 1.6
+        }
+    ]
+}
