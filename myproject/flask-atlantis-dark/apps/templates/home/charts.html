@@ -176,10 +176,9 @@
 {% block javascripts %}
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="https://d3js.org/d3.v5.js"></script>
 	<script src="/static/assets/js/setting-demo2.js"></script>
-	<script src="../../static/assets/js/chordDiagram.js"></script>
-	<script src="../../static/assets/js/networkDiagram.js"></script>
+
 	<script type="module">
 		import define from "../../static/assets/js/arcoGrafos_v2.js";
    		import {Runtime, Library, Inspector} from "../../static/assets/js/runtime.js";
@@ -648,5 +647,7 @@
 		}
 
 	</script>
+	<script src="../../static/assets/js/chordDiagram.js"></script>
+	<script src="../../static/assets/js/networkDiagram.js"></script>
 
 {% endblock javascripts %}

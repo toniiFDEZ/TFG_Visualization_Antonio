@@ -1,9 +1,9 @@
-d3.json("/data_nodes/transform_into_nodes/diabetes.csv", function (data) {
+d3.json("/data_nodes/transform_into_nodes/diabetes.csv").then(data => {
     console.log(data);
 
     // Specify the dimensions of the chart.
-    const width = 928;
-    const height = 600;
+    const width = 600;
+    const height = 800;
 
     // Specify the color scale.
     const color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -13,8 +13,8 @@ d3.json("/data_nodes/transform_into_nodes/diabetes.csv", function (data) {
     const links = data.links.map(d => ({ ...d }));
     const nodes = data.nodes.map(d => ({ ...d }));
 
-    // Create a simulation with several forces.
-    const simulation = d3.forceSimulation(nodes)
+   // Create a simulation with several forces.
+   const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
@@ -22,29 +22,30 @@ d3.json("/data_nodes/transform_into_nodes/diabetes.csv", function (data) {
 
     // Create the SVG container.
     const svg_network = d3.select("#networkDiagram")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("viewBox", [0, 0, width, height])
-        .attr("style", "max-width: 100%; height: auto;");
+        .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [0, 0, width, height])
+            .attr("style", "max-width: 100%; height: auto;");
 
     // Add a line for each link, and a circle for each node.
     console.log(svg_network)
     const link = svg_network.append("g")
-        .attr("stroke", "#999")
-        .attr("stroke-opacity", 0.6)
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
         .selectAll()
         .data(links)
         .join("line")
-        .attr("stroke-width", d => Math.sqrt(d.confidence));
+            .attr("stroke-width", d => Math.sqrt(d.confidence));
 
     const node = svg_network.append("g")
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 1.5)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
         .selectAll()
         .data(nodes)
         .join("circle")
-        .attr("r", 5);
-        //.attr("fill", d => color(d.group));
+            .attr("r", 5)
+            .attr("fill", d => color(d.group));
 
     node.append("title")
         .text(d => d.id);
@@ -92,7 +93,5 @@ d3.json("/data_nodes/transform_into_nodes/diabetes.csv", function (data) {
     // When this cell is re-run, stop the previous simulation. (This doesn’t
     // really matter since the target alpha is zero and the simulation will
     // stop naturally, but it’s a good practice.)
-    //invalidation.then(() => simulation.stop());
-
-    return svg.node();
-})
+    invalidation.then(() => simulation.stop());
+ })
