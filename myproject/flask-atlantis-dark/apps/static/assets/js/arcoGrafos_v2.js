@@ -159,7 +159,7 @@ function _y(d3, graph, margin, height) {
 
 function _margin() {
   return (
-    { top: 20, right: 20, bottom: 20, left: 280 }
+    { top: 20, right: 20, bottom: 20, left: 350 }
   )
 }
 
@@ -210,7 +210,7 @@ function _graph(data) {
 
 function _data(File) {
   return (
-    File("nodes_links_2.json").json()
+    File(localStorage.getItem('global_experiment')).json()
   )
 }
 
@@ -220,11 +220,13 @@ function _d3(require) {
   )
 }
 
-export default function define(runtime, observer, fefefe) {
+var urlToData = "../data/rules/" + localStorage.getItem('global_experiment');
+
+export default function define(runtime, observer) {
   const main = runtime.module();
   function toString() { return this.url; }
   const fileAttachments = new Map([
-    ["nodes_links_2.json", { url: new URL("../data/nodes_links_2.json", import.meta.url), mimeType: "application/json", toString }]
+    [localStorage.getItem('global_experiment'), { url: new URL(urlToData, import.meta.url), mimeType: "application/json", toString }]
   ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer("viewof order")).define("viewof order", ["d3", "html"], _order);

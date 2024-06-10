@@ -8,6 +8,8 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
 from apps.services import data_service
+from apps.services import selection_service
+import os
 
 
 db = SQLAlchemy()
@@ -21,6 +23,7 @@ def register_extensions(app):
 
 def register_blueprints(app):
     app.register_blueprint(data_service.data)
+    app.register_blueprint(selection_service.selection)
     for module_name in ('authentication', 'home'):
         module = import_module('apps.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
@@ -43,4 +46,6 @@ def create_app(config):
     register_extensions(app)
     register_blueprints(app)
     configure_database(app)
+    app.config['UPLOAD_FOLDER'] = 'apps/static/assets/data'  # Carpeta donde se guardarán los archivos
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     return app

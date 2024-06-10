@@ -8,21 +8,57 @@
 {% block content %}
 			
 	<div class="content">
+		<div id="modal_container" class="modal-container">
+			<div class="card-header-white">
+			  <h1 class="text-blue pb-2 fw-bold">Elige los datos</h1>
+			  <form id="uploadForm" action="/selection/upload" method="post" enctype="multipart/form-data">
+				<input type="file" name="archivo" id="archivo">
+				<button id="subirArchivo" class="btn btn-primary">Subir archivo</button>
+			  </form>
+			<button id="close">Cerrar</button>
+			</div>
+		</div>
+
+		<div id="modal_container_2" class="modal-container">
+			<div class="card-header-white">
+			  <h1 class="text-blue pb-2 fw-bold">Generar nuevas reglas para la visualización</h1>
+			  <form id="rulesForm" action="/data_nodes/transform_into_nodes" method="post" enctype="multipart/form-data">
+				<label for="defaultSelect2">Archivos del servidor:</label>
+				<div class="form-group-flex">
+					<select class="form-control form-control" id="defaultSelect2" name="data">
+						<option value="">Selecciona una opción...</option>
+						<!-- Aquí iran las opciones proporcionadas por ajax (donde recibimos los datos a través del endpoint de flask) -->
+					</select>
+				</div>
+				<div>
+					<p>Soporte mínimo: <span id="valor_soporte"></span></p> <!-- Muestra el valor actual -->
+					<input class="slider" type="range" min="0" max="100" value="0" id="slider_soporte" class="sliderRules" name="min_support"> <!-- Define el rango y el valor inicial -->
+				</div>
+				<div>
+					<p>Confianza: <span id="valor_confianza"></span></p> <!-- Muestra el valor actual -->
+					<input class="slider" type="range" min="0" max="100" value="0" id="slider_confianza" class="sliderRules" name="confidence"> <!-- Define el rango y el valor inicial -->
+				</div>
+				<input class="btn btn-primary" type="submit" value="Aceptar">
+			  </form>
+			<button class="closeBtn" id="close_2">Cerrar</button>
+			</div>
+		</div>	
+		
 		<div class="panel-header bg-primary-gradient">
 			<div class="page-inner py-5">
 				<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 					<div>
-						<h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-						<h5 class="text-white op-7 mb-2">Free Bootstrap 4 Admin Dashboard</h5>
+						<h2 class="text-white pb-2 fw-bold">Subida y generación de archivos</h2>
 					</div>
 					<div class="ml-md-auto py-2 py-md-0">
-						<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-						<a href="#" class="btn btn-secondary btn-round">Add Customer</a>
+						<button id="open" class="btn btn-white btn-border btn-round mr-2">Subir datos</button>
+						<button id="open_2" class="btn btn-white btn-border btn-round mr-2">Generar nuevas reglas</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="page-inner mt--5">
+
+		<!-- <div class="page-inner mt--5">
 			<div class="row mt--2">
 				<div class="col-md-6">
 					<div class="card full-height">
@@ -520,8 +556,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div> 
+		</div> -->
 	</div>
 
 {% endblock content %}
@@ -532,6 +568,222 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="/static/assets/js/setting-demo.js"></script>
 	<script src="/static/assets/js/demo.js"></script>
+
+	<script>
+		const open = document.getElementById('open');
+		const modal_container = document.getElementById('modal_container');
+		const close = document.getElementById('close');
+
+		const open2 = document.getElementById('open_2');
+		const modal_container2 = document.getElementById('modal_container_2');
+		const close2 = document.getElementById('close_2');
+
+		open.addEventListener('click', () => {
+			modal_container.classList.add('show');  
+		});
+
+		close.addEventListener('click', () => {
+			modal_container.classList.remove('show');
+		});
+
+
+		open2.addEventListener('click', () => {
+			modal_container_2.classList.add('show');  
+		});
+
+		close2.addEventListener('click', () => {
+			modal_container_2.classList.remove('show');
+		});
+	</script>
+
+	<script>
+		// Hacer una solicitud AJAX para obtener las opciones
+		$(document).ready(function(){
+			$.ajax({
+				url: '/selection/get_files',
+				type: 'GET',
+				success: function(data)
+				{
+					data.sort()
+					// Iterar sobre los datos recibidos y agregar opciones al select
+					data.forEach(function(opcion){
+						$('#defaultSelect2').append($('<option>', {
+							value: opcion,
+							text: opcion
+						}));
+					});
+				}
+			});
+		});
+
+		function updateRulesList() {
+			fetch('/selection/get_rules')
+			.then(response => response.json())
+			.then(files => {
+				var select = document.getElementById('defaultSelect');
+				select.innerHTML = '<option value="">Selecciona una opción...</option>'; // Reiniciar las opciones
+				files.forEach(file => {
+					var option = document.createElement('option');
+					option.value = file;
+					option.textContent = file;
+					select.appendChild(option);
+				});
+			})
+			.catch(error => {
+				console.error('Error al obtener la lista de archivos:', error);
+				mostrarNotificacion('warning', 'Error al obtener la lista de archivos: ' + error.message);
+			});
+		}
+
+		function updateFileList() {
+			fetch('/selection/get_files')
+			.then(response => response.json())
+			.then(files => {
+				var select = document.getElementById('defaultSelect2');
+				select.innerHTML = '<option value="">Selecciona una opción...</option>'; // Reiniciar las opciones
+				files.forEach(file => {
+					var option = document.createElement('option');
+					option.value = file;
+					option.textContent = file;
+					select.appendChild(option);
+				});
+			})
+			.catch(error => {
+				console.error('Error al obtener la lista de archivos:', error);
+				mostrarNotificacion('warning', 'Error al obtener la lista de archivos: ' + error.message);
+			});
+		}
+	</script>
+
+	<script>
+		// Función para mostrar notificaciones
+		function mostrarNotificacion(state, message) {
+			var placementFrom = 'bottom';
+			var placementAlign = 'center';
+			var content = {};
+	
+			content.message = message;
+			content.title = 'Notificación';
+			content.url = 'index.html';
+			content.target = '_blank';
+			content.icon = 'fa fa-bell'
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+				delay: 4000,
+			});
+		}
+
+		// Función para manejar el envío del formulario
+		document.getElementById('uploadForm').addEventListener('submit', function(event) {
+			event.preventDefault(); // Evitar el comportamiento predeterminado del envío del formulario
+			
+			var fileToUpload = document.getElementById('archivo');
+		
+			// Verificar si se ha seleccionado un archivo
+			if (fileToUpload.files.length === 0) {
+				mostrarNotificacion('warning', 'Por favor, selecciona un archivo antes de enviar el formulario.');
+				return; // Salir de la función si no hay archivo seleccionado
+			}
+		
+			var formData = new FormData(this); // Obtener los datos del formulario
+		
+			// Enviar los datos del formulario mediante AJAX
+			fetch('/selection/upload', {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => {
+				// Verificar si la respuesta tiene un estado exitoso
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				return response.text();
+			})
+			.then(data => {
+				// Manejar la respuesta del servidor, si es necesario
+				console.log(data);
+		
+				// Mostrar notificación de éxito
+				updateFileList(); // Asegúrate de que esta función esté definida correctamente
+				mostrarNotificacion('success', 'Archivo subido con éxito');
+				modal_container.classList.remove('show');
+		
+				// Reiniciar el valor del input file
+				fileToUpload.value = '';
+			})
+			.catch(error => {
+				// Manejar cualquier error que ocurra durante la petición
+				console.error('Error al enviar el formulario:', error);
+				// Mostrar notificación de error
+				mostrarNotificacion('warning', 'Error al subir el archivo: ' + error.message);
+			});
+		});
+
+		document.getElementById('rulesForm').addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			var formData = new FormData(this); // Obtener los datos del formulario
+			var dataSelected = document.getElementById('defaultSelect2')
+	
+			// Enviar los datos del formulario mediante AJAX
+			fetch('/data_nodes/transform_into_nodes', {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => {
+				// Verificar si la respuesta tiene un estado exitoso
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				return response.text();
+			})
+			.then(data => {
+				// Manejar la respuesta del servidor, si es necesario
+				console.log(data);
+				// Mostrar notificación de éxito
+				if (dataSelected.value == 'Selecciona una opción...' || dataSelected.value == '')
+					mostrarNotificacion('warning','Error al generar reglas');
+				else{
+					updateRulesList();
+					mostrarNotificacion('success','Reglas generadas correctamente');
+					modal_container_2.classList.remove('show');
+				}
+			})
+			.catch(error => {
+				// Manejar cualquier error que ocurra durante la petición
+				console.error('Error al enviar el formulario:', error);
+				// Mostrar notificación de error
+				mostrarNotificacion('warning', 'Error al generar reglas');
+			});
+		});
+	</script>
+
+	<!-- Slider -->
+	<script>
+		const sliderSoporte = document.getElementById("slider_soporte");
+		const valorSoporteMostrado = document.getElementById("valor_soporte");
+
+		const sliderConfianza = document.getElementById("slider_confianza");
+		const valorConfianzaMostrado = document.getElementById("valor_confianza");
+	
+		// Muestra el valor inicial
+		valorSoporteMostrado.textContent = sliderSoporte.value;
+		valorConfianzaMostrado.textContent = sliderConfianza.value;
+	
+		// Actualiza el valor mostrado cuando el slider cambia
+		sliderSoporte.addEventListener("input", function() {
+			valorSoporteMostrado.textContent = this.value / 100;
+		});
+		sliderConfianza.addEventListener("input", function() {
+			valorConfianzaMostrado.textContent = this.value / 100;
+		});
+	</script>
 
 	<script>
 		Circles.create({

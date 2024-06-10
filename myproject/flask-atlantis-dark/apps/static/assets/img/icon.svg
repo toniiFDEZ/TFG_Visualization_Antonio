@@ -1,1 +1,20 @@
-<?xml version="1.0" standalone="no"?><!-- Generator: Gravit.io --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 32 32" width="32" height="32"><defs><clipPath id="_clipPath_CDFOxzND1uALUoEXAw6Qk7OEtuAaN2fa"><rect width="32" height="32"/></clipPath></defs><g clip-path="url(#_clipPath_CDFOxzND1uALUoEXAw6Qk7OEtuAaN2fa)"><g><path d=" M 29.763 8.119 L 16 0.238 L 2.237 8.119 L 2.237 23.881 L 6.825 26.508 L 6.825 10.746 L 16 5.492 L 25.175 10.746 L 25.175 26.508 L 29.763 23.881 L 29.763 8.119 Z " fill="rgb(21,114,232)"/><path d=" M 20.588 13.373 L 16 10.746 L 11.412 13.373 L 11.412 18.627 L 16 21.254 L 20.588 18.627 L 20.588 13.373 Z " fill="rgb(21,114,232)"/><path d=" M 20.588 23.881 L 16 26.508 L 11.412 23.881 L 11.412 29.135 L 16 31.762 L 20.588 29.135 L 20.588 23.881 Z " fill="rgb(21,114,232)"/></g></g></svg>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="32.000000pt" height="32.000000pt" viewBox="0 0 32.000000 32.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M59 253 c-13 -16 -12 -17 4 -4 16 13 21 21 13 21 -2 0 -10 -8 -17
+-17z"/>
+<path d="M243 155 c0 -22 2 -30 4 -17 2 12 2 30 0 40 -3 9 -5 -1 -4 -23z"/>
+<path d="M213 140 c0 -25 2 -35 4 -22 2 12 2 32 0 45 -2 12 -4 2 -4 -23z"/>
+<path d="M182 130 c0 -19 2 -27 5 -17 2 9 2 25 0 35 -3 9 -5 1 -5 -18z"/>
+<path d="M151 114 c0 -11 3 -14 6 -6 3 7 2 16 -1 19 -3 4 -6 -2 -5 -13z"/>
+<path d="M190 80 l-45 -7 42 -1 c23 -1 45 3 48 8 3 6 5 9 3 8 -2 0 -23 -4 -48
+-8z"/>
+<path d="M50 76 c0 -2 8 -10 18 -17 15 -13 16 -12 3 4 -13 16 -21 21 -21 13z"/>
+</g>
+</svg>

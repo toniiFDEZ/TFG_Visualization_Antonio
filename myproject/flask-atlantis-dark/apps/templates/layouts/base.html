@@ -62,7 +62,86 @@
 	{% include 'includes/scripts.html' %}
 
     <!-- Specific Page JS goes HERE  -->
+	<script>
+		var global_experiment = localStorage.getItem('global_experiment');
+
+		const modal_container3 = document.getElementById('modal_container_3');
+		const accept3 = document.getElementById('accept_3');
+
+		choosen_experiment = document.getElementById('defaultSelect')
+		actual_experiment = document.getElementById('current_experiment')
+		actual_experiment.value = global_experiment
+		actual_experiment.textContent = global_experiment
+
+		// Función para transformar el formato del string
+		function getDataFromRules(originalString) {
+			// Encontrar la posición del primer subrayado (_) y la cadena "_rules"
+			const firstUnderscoreIndex = originalString.indexOf('_');
+			const rulesIndex = originalString.lastIndexOf('_rules');
+
+			// Verificar que el formato es el esperado
+			if (firstUnderscoreIndex === -1 || rulesIndex === -1 || firstUnderscoreIndex >= rulesIndex) {
+				console.error('El formato del string no es el esperado');
+				return null;
+			}
+
+			// Extraer la parte del nombre, que está entre el primer subrayado y "_rules"
+			const name = originalString.substring(firstUnderscoreIndex + 1, rulesIndex);
+
+			// Crear el nuevo string con el formato deseado
+			const newString = `${name}.csv`;
+
+			return newString;
+		}
+
+
+		function setGlobalExperiment() {
+			if (choosen_experiment.value != "") {
+				global_experiment = choosen_experiment.value
+				localStorage.setItem('global_experiment', global_experiment)
+				actual_experiment.value = global_experiment
+				actual_experiment.textContent = global_experiment
+				modal_container_3.classList.remove('show');
+				location.reload();
+			}else {
+				alert('Error: Debes seleccionar una opción');
+			}
+		}
+	</script>
+
     {% block javascripts %}{% endblock javascripts %}
+	
+	<script>
+		const open3 = document.getElementById('open_3');
+		const close3 = document.getElementById('close_3');
+
+		open3.addEventListener('click', () => {
+			modal_container_3.classList.add('show');  
+		});
+
+		close3.addEventListener('click', () => {
+			modal_container_3.classList.remove('show');
+		});
+	</script>
+
+	<script>
+		// Hacer una solicitud AJAX para obtener las opciones
+		$(document).ready(function(){
+			$.ajax({
+				url: '/selection/get_rules',
+				type: 'GET',
+				success: function(data){
+					// Iterar sobre los datos recibidos y agregar opciones al select
+					data.forEach(function(opcion){
+						$('#defaultSelect').append($('<option>', {
+							value: opcion,
+							text: opcion
+						}));
+					});
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>
