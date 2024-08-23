@@ -4,11 +4,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 	<title>
-        Flask Atlantis Dark - {% block title %}{% endblock %} | AppSeed
+        RELATIONS - {% block title %}{% endblock %} | Association Rules
     </title>
 
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="/static/assets/img/icon.ico" type="image/x-icon"/>
+	<link rel="icon" href="/static/assets/img/icon2.ico" type="image/x-icon"/>
 	<link rel="canonical" href="https://appseed.us/admin-dashboards/flask-dashboard-atlantis-dark">
 
 	<!-- Fonts and icons -->
@@ -50,7 +50,7 @@
 
 		</div>
         
-		{% if current_user.is_authenticated %}
+		{% if '_user_id' in session %}
 
 			<!-- Custom template | don't include it in your project! -->
 			{% include 'includes/configuration-plugin.html' %}
@@ -69,43 +69,52 @@
 		const accept3 = document.getElementById('accept_3');
 
 		choosen_experiment = document.getElementById('defaultSelect')
-		actual_experiment = document.getElementById('current_experiment')
-		actual_experiment.value = global_experiment
-		actual_experiment.textContent = global_experiment
+		current_experiment = document.getElementById('current_experiment')
+		current_experiment.value = global_experiment
+		current_experiment.textContent = global_experiment
 
 		// Función para transformar el formato del string
-		function getDataFromRules(originalString) {
-			// Encontrar la posición del primer subrayado (_) y la cadena "_rules"
-			const firstUnderscoreIndex = originalString.indexOf('_');
-			const rulesIndex = originalString.lastIndexOf('_rules');
+		function getNameFromRules(originalString) {
+			// Encontrar la posición de la cadena "_rules.json"
+			const jsonIndex = originalString.indexOf('_rules.json');
 
 			// Verificar que el formato es el esperado
-			if (firstUnderscoreIndex === -1 || rulesIndex === -1 || firstUnderscoreIndex >= rulesIndex) {
+			if (jsonIndex === -1) {
 				console.error('El formato del string no es el esperado');
 				return null;
 			}
 
-			// Extraer la parte del nombre, que está entre el primer subrayado y "_rules"
-			const name = originalString.substring(firstUnderscoreIndex + 1, rulesIndex);
-
-			// Crear el nuevo string con el formato deseado
-			const newString = `${name}.csv`;
+			// Extraer la parte del nombre, que está antes de ".json"
+			const newString = originalString.substring(0, jsonIndex);
 
 			return newString;
 		}
 
-
+		// Función exclusiva para el selector del experimento del header de la web (navigation.html)
 		function setGlobalExperiment() {
 			if (choosen_experiment.value != "") {
 				global_experiment = choosen_experiment.value
 				localStorage.setItem('global_experiment', global_experiment)
-				actual_experiment.value = global_experiment
-				actual_experiment.textContent = global_experiment
+				current_experiment.value = global_experiment
+				current_experiment.textContent = global_experiment
 				modal_container_3.classList.remove('show');
+
+				// Para que si estás en la sección de tablas o gráficas, se actualice
 				location.reload();
 			}else {
 				alert('Error: Debes seleccionar una opción');
 			}
+		}
+
+		function removeGlobalExperiment() {
+			global_experiment = null
+			localStorage.removeItem('global_experiment');
+			current_experiment.value = null
+			current_experiment.textContent = null
+			localStorage.removeItem('selectedGraph')
+			localStorage.removeItem('selectedBasicGraph')
+
+			//location.reload();
 		}
 	</script>
 
@@ -134,6 +143,10 @@
 					// Iterar sobre los datos recibidos y agregar opciones al select
 					data.forEach(function(opcion){
 						$('#defaultSelect').append($('<option>', {
+							value: opcion,
+							text: opcion
+						}));
+						$('#experimentSelect').append($('<option>', {
 							value: opcion,
 							text: opcion
 						}));

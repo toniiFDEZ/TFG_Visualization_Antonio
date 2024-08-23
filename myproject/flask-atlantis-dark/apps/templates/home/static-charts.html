@@ -1,0 +1,190 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Charts Sparkline {% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Gráficas Visualización (Chart.js)</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Gráficas</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Estáticas</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="v4-v6-toggle">
+            <button id="button-show-scatter" onclick="showGraph('scatter')" type="button" class="btn btn-secondary btn-sm btn-round">Gráfico Dispersión</button>
+            <span> | </span>
+            <button id="button-show-bar" onclick="showGraph('bar')" type="button" class="btn btn-secondary btn-sm btn-round">Gráfico Barras</button>
+            <span> | </span>
+            <button id="button-show-buble-cluster" onclick="showGraph('bubleCluster')" type="button" class="btn btn-secondary btn-sm btn-round">Gráfico de burbujas clusterizado</button>
+        </div>
+
+        <div class="col-my-12">
+            <div class="card" id="chartCard">
+                <div class="card-header">
+                    <div class="card-title">
+						<span id="card-title-static-charts"></span> <!-- Contenedor para el texto del título -->
+    					<button id="toggleLabels" type="button" class="btn btn-secondary btn-sm btn-round">Mostrar etiquetas</button>
+					</div>
+                </div>
+                <div class="card-body">
+                    <div id="graphContainer">
+                        <div id="infoBoxScatter"></div>
+                        <div id="scatterPlot"></div>
+                        <div id="barChart"></div>
+                        <div id="bubleCluster"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-category pr-md-5">This jQuery plugin generates sparklines (small inline charts) directly in the browser using data supplied either inline in the HTML, or via javascript. Please checkout their <a href="https://omnipotent.net/jquery.sparkline/#s-docs" target="_blank">full documentation</a>.</div>
+    </div>
+</div>
+{% endblock content %}
+
+<div id="barChartScript"></div>
+
+{% block javascripts %}
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="/static/assets/js/setting-demo2.js"></script>
+<script src="../../static/assets/js/scatterPlot.js"></script>
+
+<!-- Incluir Bokeh JS desde un CDN -->
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.3.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.0.3.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.0.3.min.js"></script>
+
+<script>
+	function loadBarchart() {
+    const fileName = getNameFromRules(global_experiment);
+    const urlBarChart = '/bokeh/get_barchart/' + fileName;
+
+    fetch(urlBarChart, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        const barchartDiv = document.getElementById('barChart');
+        barchartDiv.innerHTML = data.div;
+
+        // Create a container for the script
+        const scriptContainer = document.createElement('script');
+        document.body.appendChild(scriptContainer);
+        scriptContainer.innerHTML = data.script; // This will process the <script> tag and execute the script
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ocurrió un error al cargar el gráfico. Por favor, inténtalo de nuevo.');
+    });
+}
+</script>
+
+<script>
+	function loadBubleCluster() {
+		const fileName = getNameFromRules(global_experiment);
+		const urlBarChart = '/bokeh/get_buble_cluster/' + fileName;
+
+		fetch(urlBarChart, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok ' + response.statusText);
+			}
+			return response.json();
+		})
+		.then(data => {
+			if (data.error) {
+				alert(data.error);
+				return;
+			}
+			const bubleClustertDiv = document.getElementById('bubleCluster');
+			bubleClustertDiv.innerHTML = data.div;
+
+			// Create a container for the script
+			const scriptContainer = document.createElement('script');
+			document.body.appendChild(scriptContainer);
+			scriptContainer.innerHTML = data.script; // This will process the <script> tag and execute the script
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Ocurrió un error al cargar el gráfico. Por favor, inténtalo de nuevo.');
+		});
+	}
+</script>
+
+<script>
+    function showGraph(graphType) {
+        document.getElementById('scatterPlot').style.display = 'none';
+        document.getElementById('barChart').style.display = 'none';
+        document.getElementById('bubleCluster').style.display = 'none';
+		document.getElementById('toggleLabels').style.visibility = 'hidden';
+
+        document.getElementById('button-show-scatter').classList.remove('active');
+        document.getElementById('button-show-bar').classList.remove('active');
+        document.getElementById('button-show-buble-cluster').classList.remove('active');
+
+        if (graphType === 'scatter') {
+            document.getElementById('scatterPlot').style.display = 'block';
+			document.getElementById('toggleLabels').style.visibility = 'visible';
+            document.getElementById('button-show-scatter').classList.add('active');
+            document.getElementById('card-title-static-charts').innerText = 'Gráfico de Dispersión';
+
+        } else if (graphType === 'bar') {
+            document.getElementById('barChart').style.display = 'block';
+            document.getElementById('button-show-bar').classList.add('active');
+            document.getElementById('card-title-static-charts').innerText = 'Gráfico de Barras';
+
+            loadBarchart();
+        } else if (graphType === 'bubleCluster') {
+            document.getElementById('bubleCluster').style.display = 'block';
+            document.getElementById('button-show-buble-cluster').classList.add('active');
+            document.getElementById('card-title-static-charts').innerText = 'Gráfico de burbujas clusterizado';
+
+			loadBubleCluster()
+        }
+
+        localStorage.setItem('selectedBasicGraph', graphType);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectedBasicGraph = localStorage.getItem('selectedBasicGraph') || 'scatter';
+        showGraph(selectedBasicGraph);
+    });
+</script>
+{% endblock javascripts %}

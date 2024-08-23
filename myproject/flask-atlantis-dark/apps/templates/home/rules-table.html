@@ -1,0 +1,199 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Datatables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+			<div class="page-header">
+				<h4 class="page-title">Tablas de datos (DateTables)</h4>
+				<ul class="breadcrumbs">
+					<li class="nav-home">
+						<a href="#">
+							<i class="flaticon-home"></i>
+						</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">Tablas</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">Tabla Reglas</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Reglas generadas</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="rulesTable" class="display table table-striped table-hover" >
+									<thead>
+                                        <tr id="tableHead">
+                                            <!-- Headers will be dynamically inserted here -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody">
+                                        <!-- Data will be dynamically inserted here -->
+                                    </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/setting-demo2.js"></script>
+
+	<script>
+        $(document).ready(function () {
+			var urlToTable = 'data_nodes/get_table/' + getNameFromRules(localStorage.getItem('global_experiment'));
+		
+			$('#rulesTable').DataTable({
+				processing: true,
+				serverSide: true,
+				ajax: {
+					url: urlToTable,
+					type: 'GET',
+					dataSrc: function (json) {
+						console.log(json); // Verificar la respuesta del servidor
+						if (!json.data) {
+							console.error('Error: La respuesta del servidor no contiene la clave "data".');
+							return [];
+						}
+						// Generar encabezados de la tabla si aún no se han generado
+						if ($('#tableHead').is(':empty')) {
+							let columns_order = json.columns_order;
+							columns_order.forEach(header => {
+								$('#tableHead').append(`<th>${header}</th>`);
+							});
+						}
+						return json.data;
+					},
+					error: function (xhr, error, thrown) {
+						console.error('Error en la solicitud AJAX:', error, thrown);
+					}
+				},
+				columns: [
+					{ data: 'antecedents', title: 'Antecedents' },
+					{ data: 'consequents', title: 'Consequents' },
+					{ data: 'support', title: 'Support' },
+					{ data: 'antecedent support', title: 'Antecedent support' },
+					{ data: 'consequent support', title: 'Consequent support' },
+					{ data: 'confidence', title: 'Confidence' },
+					{ data: 'lift', title: 'Lift' },
+					{ data: 'leverage', title: 'Leverage' },
+					{ data: 'conviction', title: 'Conviction' },
+					{ data: 'zhangs_metric', title: 'Zhangs_metric' },
+					// Agregar más columnas según sea necesario
+				],
+				ordering: true,
+				pageLength: 10, // Número de filas por página
+				lengthMenu: [10, 25, 50, 100], // Opciones para el número de filas por página
+				destroy: true // Permite la reinicialización de la tabla
+			});
+		});
+
+		/*$(document).ready(function () {
+			// Fetch data from the server
+			var urlToTable = 'data_nodes/get_table/' + getDataFromRules(localStorage.getItem('global_experiment'))
+			fetch(urlToTable)
+				.then(response => response.json())
+				.then(data => {
+					let columns_order = data.columns_order;
+					let rules = data.rules_list;
+		
+					// Check if there's any data
+					if (rules.length > 0) {
+						// Generate table headers based on the order received from the backend
+						columns_order.forEach(header => {
+							$('#tableHead').append(`<th>${header}</th>`);
+						});
+		
+						// Generate table rows based on the ordered columns
+						rules.forEach(rule => {
+							let row = '<tr>';
+							columns_order.forEach(header => {
+								row += `<td>${rule[header]}</td>`;
+							});
+							row += '</tr>';
+							$('#tableBody').append(row);
+						});
+		
+						// Initialize DataTable with ordering disabled
+						$('#rulesTable').DataTable({
+							ordering: false
+						});
+					}
+				});
+		});*/
+    </script>
+
+	<script>
+		$(document).ready(function() {
+			$('#multi-filter-select').DataTable( {
+				"pageLength": 5,
+				initComplete: function () {
+					this.api().columns().every( function () {
+						var column = this;
+						var select = $('<select class="form-control"><option value=""></option></select>')
+						.appendTo( $(column.footer()).empty() )
+						.on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex(
+								$(this).val()
+								);
+
+							column
+							.search( val ? '^'+val+'$' : '', true, false )
+							.draw();
+						} );
+
+						column.data().unique().sort().each( function ( d, j ) {
+							select.append( '<option value="'+d+'">'+d+'</option>' )
+						} );
+					} );
+				}
+			});
+
+			// Add Row
+			$('#add-row').DataTable({
+				"pageLength": 5,
+			});
+
+			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+			$('#addRowButton').click(function() {
+				$('#add-row').dataTable().fnAddData([
+					$("#addName").val(),
+					$("#addPosition").val(),
+					$("#addOffice").val(),
+					action
+					]);
+				$('#addRowModal').modal('hide');
+
+			});
+		});
+	</script>
+
+
+{% endblock javascripts %}

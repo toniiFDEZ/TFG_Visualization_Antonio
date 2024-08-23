@@ -28,8 +28,8 @@ def route_default():
 @blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm(request.form)
-    if 'login' in request.form:
 
+    if 'login' in request.form:
         # read form data
         username = request.form['username']
         password = request.form['password']
@@ -45,7 +45,8 @@ def login():
 
         # Something (user or pass) is not ok
         return render_template('accounts/login.html',
-                               msg='Wrong user or password',
+                               success=False,
+                               msg='Usuario o Contraseña incorrectos',
                                form=login_form)
 
     if not current_user.is_authenticated:
@@ -66,7 +67,7 @@ def register():
         user = Users.query.filter_by(username=username).first()
         if user:
             return render_template('accounts/register.html',
-                                   msg='Username already registered',
+                                   msg='Usuario ya registrado',
                                    success=False,
                                    form=create_account_form)
 
@@ -74,7 +75,7 @@ def register():
         user = Users.query.filter_by(email=email).first()
         if user:
             return render_template('accounts/register.html',
-                                   msg='Email already registered',
+                                   msg='Email ya registrado',
                                    success=False,
                                    form=create_account_form)
 
@@ -87,7 +88,7 @@ def register():
         logout_user()
         
         return render_template('accounts/register.html',
-                               msg='User created successfully.',
+                               msg='Usuario creado con éxito.',
                                success=True,
                                form=create_account_form)
 

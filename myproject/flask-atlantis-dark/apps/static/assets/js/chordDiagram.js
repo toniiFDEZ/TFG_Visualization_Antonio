@@ -1,89 +1,125 @@
-// create the svg area
-var svg = d3.select("#chordDiagram")
-  .append("svg")
-    .attr("width", 440)
-    .attr("height", 440)
-  .append("g")
-    .attr("transform", "translate(220,220)")
+function loadChordDiagram() {
+  const urlToDataTsv = "selection/get_rule_tsv/" + getNameFromRules(localStorage.getItem('global_experiment')) + "_rules.tsv";
 
-// create a matrix
-var matrix = [
-  [11,  58, 89, 28],
-  [ 51, 18, 20, 61],
-  [ 80, 145, 80, 85],
-  [ 103,   99,  40, 71]
-];
+  // Verifica si el contenedor SVG ya existe, si es así, elimínalo
+  d3.select("#chordDiagram svg").remove();
 
-// give this matrix to d3.chord(): it will calculates all the info we need to draw arc and ribbon
-var res = d3.chord()
-    .padAngle(0.05)
-    .sortSubgroups(d3.descending)
-    (matrix)
+  // Crea el área svg
+  const svg_chord = d3.select("#chordDiagram")
+    .append("svg")
+      .attr("width", 1085)
+      .attr("height", 500)
+    .append("g")
+      .attr("transform", "translate(250,250)");
 
-// Add the links between groups
-svg
-  .datum(res)
-  .append("g")
-  .selectAll("path")
-  .data(function(d) { return d; })
-  .enter()
-  .append("path")
-    .attr("d", d3.ribbon()
-      .radius(190)
-    )
-    .style("fill", "#69b3a2")
-    .style("stroke", "black");
+  // Agrega un grupo para el contenido zoomable
+  const zoomableGroup = svg_chord.append("g");
 
-// this group object use each group of the data.groups object
-var group = svg
-  .datum(res)
-  .append("g")
-  .selectAll("g")
-  .data(function(d) { return d.groups; })
-  .enter()
+  // Define el comportamiento del zoom
+  const zoom = d3.zoom()
+    .scaleExtent([1, 10])
+    .on("zoom", (event) => {
+      zoomableGroup.attr("transform", event.transform);
+    });
 
-// add the group arcs on the outer part of the circle
-group.append("g")
-    .append("path")
-    .style("fill", "grey")
-    .style("stroke", "black")
-    .attr("d", d3.arc()
-      .innerRadius(190)
-      .outerRadius(200)
-    )
+  // Aplica el comportamiento del zoom al SVG
+  d3.select("svg").call(zoom);
 
-// Add the ticks
-group
-  .selectAll(".group-tick")
-  .data(function(d) { return groupTicks(d, 25); })    // Controls the number of ticks: one tick each 25 here.
-  .enter()
-  .append("g")
-    .attr("transform", function(d) { return "rotate(" + (d.angle * 180 / Math.PI - 90) + ") translate(" + 200 + ",0)"; })
-  .append("line")               // By default, x1 = y1 = y2 = 0, so no need to specify it.
-    .attr("x2", 6)
-    .attr("stroke", "black")
+  // Carga los datos TSV
+  d3.tsv(urlToDataTsv).then(data => {
 
-// Add the labels of a few ticks:
-group
-  .selectAll(".group-tick-label")
-  .data(function(d) { return groupTicks(d, 25); })
-  .enter()
-  .filter(function(d) { return d.value % 25 === 0; })
-  .append("g")
-    .attr("transform", function(d) { return "rotate(" + (d.angle * 180 / Math.PI - 90) + ") translate(" + 200 + ",0)"; })
-  .append("text")
-    .attr("x", 8)
-    .attr("dy", ".35em")
-    .attr("transform", function(d) { return d.angle > Math.PI ? "rotate(180) translate(-16)" : null; })
-    .style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
-    .text(function(d) { return d.value })
-    .style("font-size", 9)
+    // Parsea los datos para crear una matriz
+    const matrix = [];
+    const names = [];
+    const nameSet = new Set();
 
+    data.forEach(row => {
+      const antecedent = row.antecedents.replace(/frozenset\(\{|\}|\)/g, '');
+      const consequent = row.consequents.replace(/frozenset\(\{|\}|\)/g, '');
+      
+      if (!nameSet.has(antecedent)) {
+        nameSet.add(antecedent);
+        names.push(antecedent);
+      }
+      if (!nameSet.has(consequent)) {
+        nameSet.add(consequent);
+        names.push(consequent);
+      }
+    });
 
-// Returns an array of tick angles and values for a given group and step.
-function groupTicks(d, step) {
-  var k = (d.endAngle - d.startAngle) / d.value;
-  return d3.range(0, d.value, step).map(function(value) {
-    return {value: value, angle: value * k + d.startAngle};
+    names.forEach((_, i) => {
+      matrix[i] = Array(names.length).fill(0);
+    });
+
+    data.forEach(row => {
+      const antecedent = row.antecedents.replace(/frozenset\(\{|\}|\)/g, '');
+      const consequent = row.consequents.replace(/frozenset\(\{|\}|\)/g, '');
+      const value = +row.support;
+      const antecedentIndex = names.indexOf(antecedent);
+      const consequentIndex = names.indexOf(consequent);
+      matrix[antecedentIndex][consequentIndex] = value;
+    });
+
+    // Pasa esta matriz a d3.chord(): calculará toda la información necesaria para dibujar arcos y cintas
+    const res = d3.chord()
+        .padAngle(0.05)
+        .sortSubgroups(d3.descending)
+        (matrix);
+
+    // Agrega los grupos en la parte interna del círculo
+    zoomableGroup
+      .datum(res)
+      .append("g")
+      .selectAll("g")
+      .data(d => d.groups)
+      .join("g")
+      .append("path")
+        .style("fill", "grey")
+        .style("stroke", "black")
+        .attr("d", d3.arc()
+          .innerRadius(230)
+          .outerRadius(240)
+        );
+
+    // Agrega un div de tooltip
+    const tooltip = d3.select("#chordDiagram")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px");
+
+    // Funciones para manejar el tooltip
+    const showTooltip = function(event, d) {
+      tooltip
+        .style("opacity", 1)
+        .html("Source: " + names[d.source.index] + "<br>Target: " + names[d.target.index])
+        .style("left", (event.x)/2 + "px")
+        .style("top", (event.y)/2 + "px");
+    };
+
+    const hideTooltip = function(event, d) {
+      tooltip
+        .transition()
+        .style("opacity", 0);
+    };
+
+    // Agrega los enlaces entre los grupos
+    zoomableGroup
+      .datum(res)
+      .append("g")
+      .selectAll("path")
+      .data(d => d)
+      .join("path")
+        .attr("d", d3.ribbon()
+          .radius(220)
+        )
+        .style("fill", "#69b3a2")
+        .style("stroke", "black")
+      .on("mouseover", showTooltip)
+      .on("mouseleave", hideTooltip);
   });
 }

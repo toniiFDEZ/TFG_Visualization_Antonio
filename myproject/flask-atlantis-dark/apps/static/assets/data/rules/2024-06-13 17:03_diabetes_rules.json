@@ -1,0 +1,1616 @@
+{
+    "nodes": [
+        {
+            "label": "Age_Adult",
+            "id": 0,
+            "group": 2,
+            "kind": "Age"
+        },
+        {
+            "label": "Outcome_0",
+            "id": 1,
+            "group": 3,
+            "kind": "Type Item"
+        },
+        {
+            "label": "Rule0",
+            "id": 2,
+            "confidence": 0.6242038216560509,
+            "support": 0.12760416666666666,
+            "lift": 0.9587770700636943,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Age_Old",
+            "id": 3,
+            "group": 2,
+            "kind": "Age"
+        },
+        {
+            "label": "Insulin_Very_low",
+            "id": 4,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule1",
+            "id": 5,
+            "confidence": 0.6242038216560509,
+            "support": 0.12760416666666666,
+            "lift": 1.039888362325048,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Age_Teen",
+            "id": 6,
+            "group": 2,
+            "kind": "Age"
+        },
+        {
+            "label": "Rule2",
+            "id": 7,
+            "confidence": 0.7757575757575758,
+            "support": 0.16666666666666666,
+            "lift": 1.1915636363636364,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Age_Very_old",
+            "id": 8,
+            "group": 2,
+            "kind": "Age"
+        },
+        {
+            "label": "Rule3",
+            "id": 9,
+            "confidence": 0.6688311688311689,
+            "support": 0.13411458333333334,
+            "lift": 1.114235005775136,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Age_Young",
+            "id": 10,
+            "group": 3,
+            "kind": "Type Item"
+        },
+        {
+            "label": "Rule4",
+            "id": 11,
+            "confidence": 0.8814814814814814,
+            "support": 0.15494791666666666,
+            "lift": 1.3539555555555556,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "BMI_Low",
+            "id": 12,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule5",
+            "id": 13,
+            "confidence": 0.6774193548387097,
+            "support": 0.13671875,
+            "lift": 1.1285424392974601,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule6",
+            "id": 14,
+            "confidence": 0.7419354838709679,
+            "support": 0.14973958333333334,
+            "lift": 1.1396129032258067,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "BMI_Very_low",
+            "id": 15,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule7",
+            "id": 16,
+            "confidence": 0.7432432432432432,
+            "support": 0.14322916666666666,
+            "lift": 1.2382013249692208,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule8",
+            "id": 17,
+            "confidence": 0.9121621621621622,
+            "support": 0.17578125,
+            "lift": 1.4010810810810812,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "SkinThickness_Very_low",
+            "id": 18,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule9",
+            "id": 19,
+            "confidence": 0.6891891891891891,
+            "support": 0.1328125,
+            "lift": 1.7643243243243243,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "BloodPressure_Average",
+            "id": 20,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule10",
+            "id": 21,
+            "confidence": 0.6506849315068494,
+            "support": 0.12369791666666667,
+            "lift": 0.9994520547945207,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "BloodPressure_High",
+            "id": 22,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule11",
+            "id": 23,
+            "confidence": 0.6304347826086956,
+            "support": 0.15104166666666666,
+            "lift": 1.0502687918513627,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule12",
+            "id": 24,
+            "confidence": 0.6413043478260869,
+            "support": 0.15364583333333334,
+            "lift": 0.9850434782608696,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "BloodPressure_Low",
+            "id": 25,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule13",
+            "id": 26,
+            "confidence": 0.7236842105263158,
+            "support": 0.14322916666666666,
+            "lift": 1.1115789473684212,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "BloodPressure_Very_high",
+            "id": 27,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule14",
+            "id": 28,
+            "confidence": 0.6121212121212121,
+            "support": 0.13151041666666666,
+            "lift": 1.0197594162887005,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "DiabetesPedigreeFunction_Average",
+            "id": 29,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule15",
+            "id": 30,
+            "confidence": 0.6103896103896104,
+            "support": 0.12239583333333333,
+            "lift": 1.0168746654646872,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule16",
+            "id": 31,
+            "confidence": 0.6623376623376623,
+            "support": 0.1328125,
+            "lift": 1.0173506493506494,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "DiabetesPedigreeFunction_High",
+            "id": 32,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule17",
+            "id": 33,
+            "confidence": 0.6333333333333333,
+            "support": 0.12369791666666667,
+            "lift": 0.9728,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "DiabetesPedigreeFunction_Low",
+            "id": 34,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule18",
+            "id": 35,
+            "confidence": 0.69281045751634,
+            "support": 0.13802083333333334,
+            "lift": 1.1541831483135556,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule19",
+            "id": 36,
+            "confidence": 0.673202614379085,
+            "support": 0.13411458333333334,
+            "lift": 1.0340392156862745,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "DiabetesPedigreeFunction_Very_low",
+            "id": 37,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule20",
+            "id": 38,
+            "confidence": 0.7207792207792207,
+            "support": 0.14453125,
+            "lift": 1.2007775304955348,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule21",
+            "id": 39,
+            "confidence": 0.7792207792207791,
+            "support": 0.15625,
+            "lift": 1.1968831168831169,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Glucose_Average",
+            "id": 40,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule22",
+            "id": 41,
+            "confidence": 0.703225806451613,
+            "support": 0.14192708333333334,
+            "lift": 1.0801548387096778,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Glucose_Low",
+            "id": 42,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule23",
+            "id": 43,
+            "confidence": 0.6193548387096774,
+            "support": 0.125,
+            "lift": 1.0318102302148207,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule24",
+            "id": 44,
+            "confidence": 0.8193548387096775,
+            "support": 0.16536458333333334,
+            "lift": 1.2585290322580647,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Glucose_Very_high",
+            "id": 45,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Outcome_1",
+            "id": 46,
+            "group": 3,
+            "kind": "Type Item"
+        },
+        {
+            "label": "Rule25",
+            "id": 47,
+            "confidence": 0.7290322580645161,
+            "support": 0.14713541666666666,
+            "lift": 2.0891670678863745,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Glucose_Very_low",
+            "id": 48,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule26",
+            "id": 49,
+            "confidence": 0.8299319727891156,
+            "support": 0.15885416666666666,
+            "lift": 1.382619859223516,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule27",
+            "id": 50,
+            "confidence": 0.9251700680272109,
+            "support": 0.17708333333333334,
+            "lift": 1.421061224489796,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Insulin_Average",
+            "id": 51,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule28",
+            "id": 52,
+            "confidence": 0.7236842105263158,
+            "support": 0.14322916666666666,
+            "lift": 1.1115789473684212,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule29",
+            "id": 53,
+            "confidence": 0.6854663774403471,
+            "support": 0.4114583333333333,
+            "lift": 1.0528763557483731,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule30",
+            "id": 54,
+            "confidence": 0.632,
+            "support": 0.4114583333333333,
+            "lift": 1.0528763557483731,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule31",
+            "id": 55,
+            "confidence": 0.541044776119403,
+            "support": 0.18880208333333334,
+            "lift": 0.9013500825590056,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Pregnancies_Average",
+            "id": 56,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule32",
+            "id": 57,
+            "confidence": 0.5449438202247191,
+            "support": 0.12630208333333334,
+            "lift": 0.9078456701357577,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Pregnancies_High",
+            "id": 58,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule33",
+            "id": 59,
+            "confidence": 0.6914285714285714,
+            "support": 0.15755208333333334,
+            "lift": 1.1518810040285095,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Pregnancies_Very_high",
+            "id": 60,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule34",
+            "id": 61,
+            "confidence": 0.6508875739644969,
+            "support": 0.14322916666666666,
+            "lift": 1.0843419887304417,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule35",
+            "id": 62,
+            "confidence": 0.5661605206073753,
+            "support": 0.33984375,
+            "lift": 1.4493709327548807,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule36",
+            "id": 63,
+            "confidence": 0.87,
+            "support": 0.33984375,
+            "lift": 1.4493709327548807,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule37",
+            "id": 64,
+            "confidence": 0.7415730337078651,
+            "support": 0.171875,
+            "lift": 1.139056179775281,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule38",
+            "id": 65,
+            "confidence": 0.6571428571428571,
+            "support": 0.14973958333333334,
+            "lift": 1.0093714285714286,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Pregnancies_Low",
+            "id": 66,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule39",
+            "id": 67,
+            "confidence": 0.7851851851851852,
+            "support": 0.13802083333333334,
+            "lift": 1.2060444444444445,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "SkinThickness_High",
+            "id": 68,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule40",
+            "id": 69,
+            "confidence": 0.6363636363636364,
+            "support": 0.13671875,
+            "lift": 0.9774545454545455,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "SkinThickness_Low",
+            "id": 70,
+            "group": 1,
+            "kind": "Numeric Discretized"
+        },
+        {
+            "label": "Rule41",
+            "id": 71,
+            "confidence": 0.7482517482517482,
+            "support": 0.13932291666666666,
+            "lift": 1.1493146853146854,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule42",
+            "id": 72,
+            "confidence": 0.68,
+            "support": 0.265625,
+            "lift": 1.04448,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule43",
+            "id": 73,
+            "confidence": 0.5621301775147929,
+            "support": 0.12369791666666667,
+            "lift": 1.610880508699108,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule44",
+            "id": 74,
+            "confidence": 0.9181818181818182,
+            "support": 0.13151041666666666,
+            "lift": 1.4103272727272729,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule45",
+            "id": 75,
+            "confidence": 0.7481481481481481,
+            "support": 0.13151041666666666,
+            "lift": 1.2463726199084117,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule46",
+            "id": 76,
+            "confidence": 0.6824324324324323,
+            "support": 0.13151041666666666,
+            "lift": 1.6585699623674306,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule47",
+            "id": 77,
+            "confidence": 0.9426229508196723,
+            "support": 0.14973958333333334,
+            "lift": 1.4478688524590166,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule48",
+            "id": 78,
+            "confidence": 0.8455882352941176,
+            "support": 0.14973958333333334,
+            "lift": 1.4087023095572286,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule49",
+            "id": 79,
+            "confidence": 0.7823129251700681,
+            "support": 0.14973958333333334,
+            "lift": 1.9013174890209252,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule50",
+            "id": 80,
+            "confidence": 0.6513409961685823,
+            "support": 0.22135416666666666,
+            "lift": 1.0004597701149425,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule51",
+            "id": 81,
+            "confidence": 0.5379746835443038,
+            "support": 0.22135416666666666,
+            "lift": 1.3772151898734177,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule52",
+            "id": 82,
+            "confidence": 0.8333333333333333,
+            "support": 0.22135416666666666,
+            "lift": 1.3882863340563991,
+            "group": 20,
+            "kind": "Rule"
+        },
+        {
+            "label": "Rule53",
+            "id": 83,
+            "confidence": 0.5666666666666667,
+            "support": 0.22135416666666666,
+            "lift": 1.3772151898734177,
+            "group": 20,
+            "kind": "Rule"
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 2,
+            "antecedent supp": 0.20442708333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 2,
+            "target": 1,
+            "antecedent supp": 0.20442708333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 3,
+            "target": 5,
+            "antecedent supp": 0.20442708333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 5,
+            "target": 4,
+            "antecedent supp": 0.20442708333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 6,
+            "target": 7,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 7,
+            "target": 1,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 8,
+            "target": 9,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 9,
+            "target": 4,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 10,
+            "target": 11,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 11,
+            "target": 1,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 12,
+            "target": 13,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 13,
+            "target": 4,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 12,
+            "target": 14,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 14,
+            "target": 1,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 15,
+            "target": 16,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 16,
+            "target": 4,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 15,
+            "target": 17,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 17,
+            "target": 1,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 15,
+            "target": 19,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.390625,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 19,
+            "target": 18,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.390625,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 20,
+            "target": 21,
+            "antecedent supp": 0.19010416666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 21,
+            "target": 1,
+            "antecedent supp": 0.19010416666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 22,
+            "target": 23,
+            "antecedent supp": 0.23958333333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 23,
+            "target": 4,
+            "antecedent supp": 0.23958333333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 22,
+            "target": 24,
+            "antecedent supp": 0.23958333333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 24,
+            "target": 1,
+            "antecedent supp": 0.23958333333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 25,
+            "target": 26,
+            "antecedent supp": 0.19791666666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 26,
+            "target": 1,
+            "antecedent supp": 0.19791666666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 27,
+            "target": 28,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 28,
+            "target": 4,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 29,
+            "target": 30,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 30,
+            "target": 4,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 29,
+            "target": 31,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 31,
+            "target": 1,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 32,
+            "target": 33,
+            "antecedent supp": 0.1953125,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 33,
+            "target": 1,
+            "antecedent supp": 0.1953125,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 34,
+            "target": 35,
+            "antecedent supp": 0.19921875,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 35,
+            "target": 4,
+            "antecedent supp": 0.19921875,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 34,
+            "target": 36,
+            "antecedent supp": 0.19921875,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 36,
+            "target": 1,
+            "antecedent supp": 0.19921875,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 37,
+            "target": 38,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 38,
+            "target": 4,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 37,
+            "target": 39,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 39,
+            "target": 1,
+            "antecedent supp": 0.20052083333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 40,
+            "target": 41,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 41,
+            "target": 1,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 42,
+            "target": 43,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 43,
+            "target": 4,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 42,
+            "target": 44,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 44,
+            "target": 1,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 45,
+            "target": 47,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.3489583333333333,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 47,
+            "target": 46,
+            "antecedent supp": 0.20182291666666666,
+            "consequent supp": 0.3489583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 48,
+            "target": 49,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 49,
+            "target": 4,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 48,
+            "target": 50,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 50,
+            "target": 1,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 51,
+            "target": 52,
+            "antecedent supp": 0.19791666666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 52,
+            "target": 1,
+            "antecedent supp": 0.19791666666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 4,
+            "target": 53,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 53,
+            "target": 1,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 1,
+            "target": 54,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 54,
+            "target": 4,
+            "antecedent supp": 0.6510416666666666,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 46,
+            "target": 55,
+            "antecedent supp": 0.3489583333333333,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 55,
+            "target": 4,
+            "antecedent supp": 0.3489583333333333,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 56,
+            "target": 57,
+            "antecedent supp": 0.23177083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 57,
+            "target": 4,
+            "antecedent supp": 0.23177083333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 58,
+            "target": 59,
+            "antecedent supp": 0.22786458333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 59,
+            "target": 4,
+            "antecedent supp": 0.22786458333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 60,
+            "target": 61,
+            "antecedent supp": 0.22005208333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 61,
+            "target": 4,
+            "antecedent supp": 0.22005208333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 4,
+            "target": 62,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.390625,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 62,
+            "target": 18,
+            "antecedent supp": 0.6002604166666666,
+            "consequent supp": 0.390625,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 18,
+            "target": 63,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 63,
+            "target": 4,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 56,
+            "target": 64,
+            "antecedent supp": 0.23177083333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 64,
+            "target": 1,
+            "antecedent supp": 0.23177083333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 58,
+            "target": 65,
+            "antecedent supp": 0.22786458333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 65,
+            "target": 1,
+            "antecedent supp": 0.22786458333333334,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 66,
+            "target": 67,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 67,
+            "target": 1,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 68,
+            "target": 69,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 69,
+            "target": 1,
+            "antecedent supp": 0.21484375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 70,
+            "target": 71,
+            "antecedent supp": 0.18619791666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 71,
+            "target": 1,
+            "antecedent supp": 0.18619791666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 18,
+            "target": 72,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 72,
+            "target": 1,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 60,
+            "target": 73,
+            "antecedent supp": 0.22005208333333334,
+            "consequent supp": 0.3489583333333333,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 73,
+            "target": 46,
+            "antecedent supp": 0.22005208333333334,
+            "consequent supp": 0.3489583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 15,
+            "target": 74,
+            "antecedent supp": 0.14322916666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 4,
+            "target": 74,
+            "antecedent supp": 0.14322916666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 74,
+            "target": 1,
+            "antecedent supp": 0.14322916666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 15,
+            "target": 75,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 1,
+            "target": 75,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 75,
+            "target": 4,
+            "antecedent supp": 0.17578125,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 15,
+            "target": 76,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.4114583333333333,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 76,
+            "target": 4,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.4114583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 76,
+            "target": 1,
+            "antecedent supp": 0.19270833333333334,
+            "consequent supp": 0.4114583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 48,
+            "target": 77,
+            "antecedent supp": 0.15885416666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 4,
+            "target": 77,
+            "antecedent supp": 0.15885416666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 77,
+            "target": 1,
+            "antecedent supp": 0.15885416666666666,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 48,
+            "target": 78,
+            "antecedent supp": 0.17708333333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 1,
+            "target": 78,
+            "antecedent supp": 0.17708333333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 78,
+            "target": 4,
+            "antecedent supp": 0.17708333333333334,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 48,
+            "target": 79,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.4114583333333333,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 79,
+            "target": 4,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.4114583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 79,
+            "target": 1,
+            "antecedent supp": 0.19140625,
+            "consequent supp": 0.4114583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 4,
+            "target": 80,
+            "antecedent supp": 0.33984375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 18,
+            "target": 80,
+            "antecedent supp": 0.33984375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 80,
+            "target": 1,
+            "antecedent supp": 0.33984375,
+            "consequent supp": 0.6510416666666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 4,
+            "target": 81,
+            "antecedent supp": 0.4114583333333333,
+            "consequent supp": 0.390625,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 1,
+            "target": 81,
+            "antecedent supp": 0.4114583333333333,
+            "consequent supp": 0.390625,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 81,
+            "target": 18,
+            "antecedent supp": 0.4114583333333333,
+            "consequent supp": 0.390625,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 18,
+            "target": 82,
+            "antecedent supp": 0.265625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 1,
+            "target": 82,
+            "antecedent supp": 0.265625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 82,
+            "target": 4,
+            "antecedent supp": 0.265625,
+            "consequent supp": 0.6002604166666666,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 18,
+            "target": 83,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.4114583333333333,
+            "kind": 1,
+            "value": 0
+        },
+        {
+            "source": 83,
+            "target": 4,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.4114583333333333,
+            "kind": 2,
+            "value": 1
+        },
+        {
+            "source": 83,
+            "target": 1,
+            "antecedent supp": 0.390625,
+            "consequent supp": 0.4114583333333333,
+            "kind": 2,
+            "value": 1
+        }
+    ]
+}

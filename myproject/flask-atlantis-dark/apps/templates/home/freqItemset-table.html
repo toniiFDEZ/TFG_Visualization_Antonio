@@ -1,0 +1,110 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Datatables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+			<div class="page-header">
+				<h4 class="page-title">Tablas de datos (DateTables)</h4>
+				<ul class="breadcrumbs">
+					<li class="nav-home">
+						<a href="#">
+							<i class="flaticon-home"></i>
+						</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">Tablas</a>
+					</li>
+					<li class="separator">
+						<i class="flaticon-right-arrow"></i>
+					</li>
+					<li class="nav-item">
+						<a href="#">Tabla Itemset Frecuentes</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Itemsets Frecuentes</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="rulesTableFreqItemset" class="display table table-striped table-hover" >
+									<thead>
+										<tr id="tableHeadFreqItemset">
+											<!-- Headers will be dynamically inserted here -->
+										</tr>
+									</thead>
+									<tbody id="tableBodyFreqItemset">
+										<!-- Data will be dynamically inserted here -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="/static/assets/js/setting-demo2.js"></script>
+
+	<script>
+        $(document).ready(function () {
+			var urlToTableFreqItemset = 'data_nodes/get_table_freqItemset/' + getNameFromRules(localStorage.getItem('global_experiment'));
+			$('#rulesTableFreqItemset').DataTable({
+				processing: true,
+				serverSide: true,
+				ajax: {
+					url: urlToTableFreqItemset,
+					type: 'GET',
+					dataSrc: function (json) {
+						console.log(json); // Verificar la respuesta del servidor
+						if (!json.data) {
+							console.error('Error: La respuesta del servidor no contiene la clave "data".');
+							return [];
+						}
+						// Generar encabezados de la tabla si aún no se han generado
+						if ($('#tableHeadFreqItemset').is(':empty')) {
+							let columns_order = json.columns_order;
+							columns_order.forEach(header => {
+								$('#tableHeadFreqItemset').append(`<th>${header}</th>`);
+							});
+						}
+						return json.data;
+					},
+					error: function (xhr, error, thrown) {
+						console.error('Error en la solicitud AJAX:', error, thrown);
+					}
+				},
+				columns: [
+					{ data: 'itemsets', title: 'Itemsets' },
+					{ data: 'support', title: 'Support' },
+					// Agregar más columnas según sea necesario
+				],
+				ordering: true,
+				pageLength: 10, // Número de filas por página
+				lengthMenu: [10, 25, 50, 100], // Opciones para el número de filas por página
+				destroy: true // Permite la reinicialización de la tabla
+			});
+		});
+    </script>
+
+
+{% endblock javascripts %}

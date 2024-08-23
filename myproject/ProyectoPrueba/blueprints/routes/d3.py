@@ -3,7 +3,7 @@ from .dataload import data
 
 d3 = Blueprint('d3', __name__, url_prefix='/d3')
 
-# Arco de grafos
+# Grafo de Arcos
 @d3.route("/1")
 def d3_1(titulo="D3 Arcos", nombre="Antonio"):
     # data = pd.read_csv("./static/data/data.csv", sep = ";")
@@ -39,7 +39,7 @@ def d3_2(titulo="D3 Densidad", nombre="Antonio"):
     )
 
 
-# Arco de grafos v2 / Mas complejo
+# Grafo de Arcos v2 / Mas complejo
 @d3.route("/3")
 def d3_3(titulo="D3 Arcos v2", nombre="Antonio"):
     return render_template(

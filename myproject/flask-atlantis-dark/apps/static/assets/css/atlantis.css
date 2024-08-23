@@ -1935,7 +1935,7 @@ body {
     .sidebar[data-background-color="red2"] .nav > .nav-item.active > a p, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a i, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a .caret, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a:hover p, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a:hover i, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a:hover .caret, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a:focus p, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a:focus i, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a:focus .caret, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] p, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] i, .sidebar[data-background-color="red2"] .nav > .nav-item.active > a[data-toggle=collapse][aria-expanded=true] .caret {
       color: #EA4d56 !important; }
   .sidebar[data-background-color="red2"] .nav .nav-section .text-section, .sidebar[data-background-color="red2"] .nav .nav-section .sidebar-mini-icon {
-    color: #eaeaea; }
+    color: #eaeaea}
   .sidebar[data-background-color="red2"] .nav .nav-collapse li a .sub-item:before {
     background: #eaeaea; }
   .sidebar[data-background-color="red2"] .scrollbar-inner > .scroll-element .scroll-bar {

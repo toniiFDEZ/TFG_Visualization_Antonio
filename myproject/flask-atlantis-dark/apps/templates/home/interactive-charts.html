@@ -1,0 +1,161 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Charts {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Gráficas Visualización (Chart.js)</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Gráficas</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Interactivas</a>
+                </li>
+            </ul>
+        </div>
+        <div class="v4-v6-toggle">
+            <button id="button-show-arc" onclick="showGraph('arc')" type="button" class="btn btn-secondary btn-sm btn-round">Grafo Arcos</button>
+            <span> | </span>
+            <button id="button-show-network" onclick="showGraph('network')" type="button" class="btn btn-secondary btn-sm btn-round">Diagrama Red Nodos</button>
+            <span> | </span>
+            <button id="button-show-chord" onclick="showGraph('chord')" type="button" class="btn btn-secondary btn-sm btn-round">Diagrama Chord</button>
+        </div>
+        <div class="col-my-12">
+            <div class="card" id="chartCard">
+                <div class="card-header">
+                    <div class="card-title" id="card-title">
+                        <span id="card-title-interactive-charts"></span>
+                        <!-- Contenedor para el texto del título -->
+                        <button id="toggleLabelNodes" type="button" class="btn btn-secondary btn-sm btn-round" onclick="toggleLabels()">Mostrar etiquetas Nodos no Regla</button>
+                    </div>
+                    <div class="slider-container" id="support-confidence-slider">
+                        <div class="slider-wrapper">
+                            <label for="supportSlider">Soporte:</label>
+                            <input type="range" id="supportSlider" min="0" max="1" step="0.01" value="0.1">
+                            <span id="supportValue">0.1</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <label for="confidenceSlider">Confianza:</label>
+                            <input type="range" id="confidenceSlider" min="0" max="1" step="0.01" value="0.1">
+                            <span id="confidenceValue">0.1</span>
+                        </div>
+                    </div>
+                    <div class="filter-container" id="kind-filter">
+                        <label><input type="checkbox" class="kind-checkbox" value="Numeric Discretized" checked>Numeric Discretized</label>
+                        <label><input type="checkbox" class="kind-checkbox" value="Type Item" checked>Type Item</label>
+                        <label><input type="checkbox" class="kind-checkbox" value="Age" checked>Age</label>
+						<label><input type="checkbox" class="kind-checkbox" value="Rule" checked>Rule</label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="graphContainer">
+                        <div id="graphArc"></div>
+                        <div id="networkDiagram" style="display: none;">
+                            <div class="force-toggle">
+                                <button id="force-default" onclick="updateForces('default')" type="button" class="btn btn-secondary btn-sm btn-round">Default Forces</button>
+                                <span> | </span>
+                                <button id="force-low-gravity" onclick="updateForces('centered')" type="button" class="btn btn-secondary btn-sm btn-round">Centered-Circular</button>
+                                <span> | </span>
+                                <button id="force-high-repulsion" onclick="updateForces('high-repulsion')" type="button" class="btn btn-secondary btn-sm btn-round">High Repulsion</button>
+                                <span> | </span>
+                                <button id="rules-center" onclick="updateForces('rules-center')" type="button" class="btn btn-secondary btn-sm btn-round">Rules Center</button>
+                            </div>
+                        </div>
+                        <div id="chordDiagram" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-category">
+            Simple yet flexible JavaScript charting for designers & developers. Please checkout their
+            <a href="https://www.chartjs.org/" target="_blank">full documentation</a>.
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+<script type="module">
+    import define from "../../static/assets/js/arcoGrafos_v2.js";
+    import {Runtime, Library, Inspector} from "../../static/assets/js/runtime.js";
+
+    const runtime = new Runtime();
+    const main = runtime.module(define, Inspector.into(document.getElementById("graphArc")));
+</script>
+
+<script src="../../static/assets/js/chordDiagram.js"></script>
+<script src="../../static/assets/js/networkDiagram.js"></script>
+
+<script>
+    function showGraph(graphType) {
+        // Ocultar todos los gráficos
+        document.getElementById('graphArc').style.display = 'none';
+        document.getElementById('networkDiagram').style.display = 'none';
+        document.getElementById('chordDiagram').style.display = 'none';
+        document.getElementById('support-confidence-slider').style.display = 'none';
+        document.getElementById('toggleLabelNodes').style.visibility = 'hidden';
+
+        // Quitar la clase 'active' de todos los botones
+        document.getElementById('button-show-arc').classList.remove('active');
+        document.getElementById('button-show-network').classList.remove('active');
+        document.getElementById('button-show-chord').classList.remove('active');
+
+        // Mostrar el gráfico seleccionado y añadir la clase 'active' al botón correspondiente
+        if (graphType === 'arc') {
+            document.getElementById('graphArc').style.display = 'block';
+			document.getElementById('kind-filter').style.display = 'flex';
+            document.getElementById('button-show-arc').classList.add('active');
+            document.getElementById('card-title-interactive-charts').innerText = 'Grafo de Arcos';
+            document.getElementById('support-confidence-slider').style.display = 'flex';
+        } else if (graphType === 'network') {
+            document.getElementById('networkDiagram').style.display = 'block';
+			document.getElementById('kind-filter').style.display = 'flex';
+            document.getElementById('button-show-network').classList.add('active');
+            document.getElementById('card-title-interactive-charts').innerText = 'Diagrama Red de nodos';
+            document.getElementById('toggleLabelNodes').style.visibility = 'visible';
+            document.getElementById('support-confidence-slider').style.display = 'flex';
+        } else if (graphType === 'chord') {
+            document.getElementById('chordDiagram').style.display = 'block';
+			document.getElementById('kind-filter').style.display = 'none';
+            document.getElementById('button-show-chord').classList.add('active');
+            document.getElementById('card-title-interactive-charts').innerText = 'Diagrama Chord';
+			loadChordDiagram();
+        }
+
+        // Guardar la selección en localStorage
+        localStorage.setItem('selectedGraph', graphType);
+    }
+
+    // Restaurar la selección del gráfico desde localStorage al cargar la página
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectedGraph = localStorage.getItem('selectedGraph') || 'arc'; // 'arc' como valor por defecto
+        showGraph(selectedGraph);
+    });
+
+    // Initialize with Arc Graph visible
+    // Este código ya no es necesario ya que la selección se restablece desde localStorage
+    // showGraph('arc');
+</script>
+
+{% endblock javascripts %}
