@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, jsonify, request, current_app, Response, send_file
 from pathlib import Path
+from apps.models.data import Data
 import os
 import csv
 import io
@@ -26,6 +27,7 @@ def get_rules():
 
     return jsonify(files)
 
+
 @selection.route('/get_rule/<string:data>', methods=['GET'])
 def get_rule(data):
     file_path = Path(f'apps/static/assets/data/rules/{data}')
@@ -35,7 +37,8 @@ def get_rule(data):
             file_content = json.load(f)
         return jsonify(file_content)
     else:
-        return jsonify({"error": "File not found"}), 404
+        return jsonify({"error": "Archivo no encontrado"}), 404
+    
     
 # @selection.route('/get_rule_tsv/<string:data>', methods=['GET'])
 # def get_rule_tsv(data):
@@ -65,6 +68,7 @@ def get_rule(data):
 #     else:
 #         return jsonify({"error": "File not found"}), 404
 
+
 @selection.route('/get_rule_tsv/<string:data>', methods=['GET'])
 def get_rule_tsv(data):
     # Define la ruta base de los archivos TSV
@@ -84,7 +88,8 @@ def get_rule_tsv(data):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     else:
-        return jsonify({"error": "File not found"}), 404
+        return jsonify({"error": "Archivo no encontrado"}), 404
+    
 
 @selection.route('/get_files')
 def get_files():
@@ -94,20 +99,26 @@ def get_files():
 
     return jsonify(files)
 
+
 @selection.route('/upload', methods=['POST'])
 def upload_file():
     if 'archivo' not in request.files:
-        return 'No se ha seleccionado ningún archivo'
+        return jsonify({'error': 'No se ha seleccionado ningún archivo'}), 400
     
     archivo = request.files['archivo']
     
     if archivo.filename == '':
-        return 'No se ha seleccionado ningún archivo'
+        return jsonify({'error': 'No se ha seleccionado ningún archivo'}), 400
+    
+    # Verificar si el archivo tiene la extensión permitida
+    if not Data.allowed_file(archivo.filename):
+        return jsonify({'error': 'Solo se permiten archivos con extensión .csv'}), 500
     
     # Guardar el archivo en el servidor
     archivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'], archivo.filename))
     
-    return 'Archivo subido con éxito'
+    return jsonify({'mensaje': 'Archivo subido con éxito'}), 200
+
 
 @selection.route('/delete', methods=['POST'])
 def delete_file():

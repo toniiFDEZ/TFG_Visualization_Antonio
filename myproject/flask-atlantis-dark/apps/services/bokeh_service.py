@@ -100,7 +100,7 @@ def get_bubble_chart(data):
     # Supongamos que 'lift' y 'confidence' están disponibles directamente
     features = df[['lift', 'confidence']].fillna(0).values
 
-    # Ejecutar KMeans clustering
+    # Ejecutar KMeans clustering (para dividir en secciones)
     kmeans = KMeans(n_clusters=3, random_state=42)
     df['cluster'] = kmeans.fit_predict(features)
     df['size'] = df['lift'] * 10  # Escalar el lift para el tamaño de las burbujas

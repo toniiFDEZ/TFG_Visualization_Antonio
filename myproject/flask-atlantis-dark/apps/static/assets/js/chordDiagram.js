@@ -8,12 +8,11 @@ function loadChordDiagram() {
   const svg_chord = d3.select("#chordDiagram")
     .append("svg")
       .attr("width", 1085)
-      .attr("height", 500)
-    .append("g")
-      .attr("transform", "translate(250,250)");
+      .attr("height", 500);
 
   // Agrega un grupo para el contenido zoomable
-  const zoomableGroup = svg_chord.append("g");
+  const zoomableGroup = svg_chord.append("g")
+      .attr("transform", "translate(250,250)");
 
   // Define el comportamiento del zoom
   const zoom = d3.zoom()
@@ -22,8 +21,8 @@ function loadChordDiagram() {
       zoomableGroup.attr("transform", event.transform);
     });
 
-  // Aplica el comportamiento del zoom al SVG
-  d3.select("svg").call(zoom);
+  // Aplica el comportamiento del zoom al grupo `zoomableGroup`
+  svg_chord.call(zoom);
 
   // Carga los datos TSV
   d3.tsv(urlToDataTsv).then(data => {
@@ -67,19 +66,33 @@ function loadChordDiagram() {
         (matrix);
 
     // Agrega los grupos en la parte interna del círculo
-    zoomableGroup
+    const group = zoomableGroup
       .datum(res)
       .append("g")
       .selectAll("g")
       .data(d => d.groups)
-      .join("g")
-      .append("path")
+      .join("g");
+
+    group.append("path")
         .style("fill", "grey")
         .style("stroke", "black")
         .attr("d", d3.arc()
           .innerRadius(230)
           .outerRadius(240)
-        );
+        )
+        .on("click", (event, d) => showDetails(names[d.index])); // Mostrar detalles al hacer clic
+
+    // Añade el texto a cada sector
+    group.append("text")
+      .each(d => d.angle = (d.startAngle + d.endAngle) / 2)
+      .attr("dy", ".35em")
+      .attr("transform", d => `
+        rotate(${(d.angle * 180 / Math.PI - 90)})
+        translate(${(240 + 10)})
+        ${d.angle > Math.PI ? "rotate(180)" : ""}
+      `)
+      .attr("text-anchor", d => d.angle > Math.PI ? "end" : null)
+      .text(d => names[d.index]);
 
     // Agrega un div de tooltip
     const tooltip = d3.select("#chordDiagram")
@@ -122,4 +135,10 @@ function loadChordDiagram() {
       .on("mouseover", showTooltip)
       .on("mouseleave", hideTooltip);
   });
+
+  // Función para mostrar los detalles de un sector al hacer clic
+  function showDetails(name) {
+    // Aquí puedes modificar para mostrar más información específica
+    d3.select("#chordDetails").html(`<strong>Detalles:</strong><br>Item: ${name}`);
+  }
 }

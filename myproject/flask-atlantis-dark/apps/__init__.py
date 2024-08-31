@@ -45,5 +45,6 @@ def create_app(config):
     register_blueprints(app)
     configure_database(app)
     app.config['UPLOAD_FOLDER'] = 'apps/static/assets/data'  # Carpeta donde se guardarán los archivos
+    app.config['ALLOWED_EXTENSIONS'] = {'csv'} # Extensiones permitidas
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     return app

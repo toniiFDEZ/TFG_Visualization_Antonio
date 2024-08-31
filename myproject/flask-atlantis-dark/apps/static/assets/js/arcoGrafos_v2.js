@@ -421,4 +421,3 @@ export default function define(runtime, observer) {
 
   return main;
 }
-

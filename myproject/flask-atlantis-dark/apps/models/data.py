@@ -1,8 +1,9 @@
 import re
-from flask import jsonify
+from flask import current_app, jsonify
 import numpy as np
 from sklearn.preprocessing import KBinsDiscretizer
 import pandas as pd
+
 
 class Data():
     def get_data(data) -> list:
@@ -19,6 +20,10 @@ class Data():
     #     return False
 
 
+    def allowed_file(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
+
+
     def dataframe_to_listoflists(dataframe :pd.DataFrame):
         return dataframe.dropna().values.tolist()
     
@@ -31,20 +36,20 @@ class Data():
             return False
     
     def discretize_columns(dataframe :pd.DataFrame, bins=5):
-        header = list(dataframe) # Save columns names
-        ind = 0 # column iterator
+        header = list(dataframe) # Guardar nombre de las columnas
+        ind = 0 # Iterador de columnas
         labels = ['Very_low', 'Low', 'Average', 'High', 'Very_high']
         labels_age = ['Young', 'Teen', 'Adult', 'Old', 'Very_old']
         # 7 bins
         # labels = ['Extreme_Low', 'Very_low', 'Low', 'Average', 'High', 'Very_high', 'Extreme_High']
-        # labels_age = ['Baby-Child', 'Young', 'Teen', 'Adult', 'Adult-old', 'Old', 'Very_old']
+        # labels_age = ['Baby_Child', 'Young', 'Teen', 'Adult', 'Adult-old', 'Old', 'Very_old']
 
         while (ind < len(header)):
             disc = dataframe.iloc[:,ind] 
             disc = disc.to_frame()
             
             if header[ind] != 'id':
-                # Es numérico y tiene más de 3 valores en la columna
+                # Es numérico y tiene más de 3 valores en la columna (para los valores únicos)
                 if Data.is_numeric(dataframe[header[ind]]) and dataframe[header[ind]].nunique() > 3:
                 # if header[ind] != 'diagnosis':
                     disc = KBinsDiscretizer(n_bins=bins, encode='ordinal',
@@ -128,7 +133,7 @@ class Data():
             antecedent = str(row["antecedents"])[12:-3].replace("'", "").split(", ")
             consequent = str(row["consequents"])[12:-3].replace("'", "").split(", ")
             
-            # Adding antecedent nodes
+            # Añadir nodos antecedentes
             for a in antecedent:
                 if a not in node_dict:
                     node = {
@@ -141,7 +146,7 @@ class Data():
                     node_dict[a] = i
                     i += 1
 
-            # Adding consequent nodes
+            # Añadir nodos consecuentes
             for c in consequent:
                 if c not in node_dict:
                     node = {
@@ -154,7 +159,7 @@ class Data():
                     node_dict[c] = i
                     i += 1
 
-            # Adding rule node
+            # Añadir nodos regla
             rule_node = {
                 'label': f"Rule{rule_counter}",
                 'id': i,
@@ -169,7 +174,7 @@ class Data():
             i += 1
             rule_counter += 1
 
-            # Adding links from antecedents to rule node
+            # Añadir enlaces de nodos antecedentes a nodos regla
             for a in antecedent:
                 link = {
                     'source': node_dict[a],
@@ -180,7 +185,7 @@ class Data():
                 }
                 links.append(link)
 
-            # Adding links from rule node to consequents
+            # Añadir enlaces de nodos regla a nodos consecuentes
             for c in consequent:
                 link = {
                     'source': rule_id,
@@ -224,7 +229,7 @@ class Data():
     @classmethod
     def get_kind(self, item):
         labels = ['Very_low', 'Low', 'Average', 'High', 'Very_high']
-        labels_age = ['Very_young', 'Teen', 'Adult', 'Old', 'Very_old']
+        labels_age = ['Young', 'Teen', 'Adult', 'Old', 'Very_old']
 
         if any(label in item for label in labels):
             return "Numeric Discretized"

@@ -80,22 +80,6 @@ function toggleLabels() {
         .attr('visibility', labelsVisible ? 'visible' : 'hidden');  // Alternar la visibilidad
 }
 
-// function updateKindFilter() {
-//     const selectedKinds = new Set();
-//     d3.selectAll(".kind-checkbox:checked").each(function() {
-//         selectedKinds.add(this.value);
-//     });
-
-//     d3.selectAll("circle")
-//         .style("opacity", d => selectedKinds.has(d.kind) ? 1 : 0.2);
-
-//     d3.selectAll("path")
-//         .style("visibility", d => selectedKinds.has(d.source.kind) && selectedKinds.has(d.target.kind) ? 'visible' : 'hidden');
-
-//     // d3.selectAll("line")
-//     //      .style("visibility", d => selectedKinds.has(d.source.kind) && selectedKinds.has(d.target.kind) ? 'visible' : 'hidden');
-// }
-
 function updateKindFilter() {
     const selectedKinds = new Set();
     d3.selectAll(".kind-checkbox:checked").each(function() {
@@ -112,7 +96,24 @@ function updateKindFilter() {
         const targetVisible = d.target && selectedKinds.has(d.target.kind);
         return (sourceVisible && targetVisible) ? 'visible' : 'hidden';
       });
-  }
+}
+
+// Otra opción de visualización
+/*function updateKindFilter() {
+    const selectedKinds = new Set();
+    d3.selectAll(".kind-checkbox:checked").each(function() {
+        selectedKinds.add(this.value);
+    });
+
+    d3.selectAll("circle")
+        .style("opacity", d => selectedKinds.has(d.kind) ? 1 : 0.2);
+
+    d3.selectAll("path")
+        .style("visibility", d => selectedKinds.has(d.source.kind) && selectedKinds.has(d.target.kind) ? 'visible' : 'hidden');
+
+    // d3.selectAll("line")
+    //      .style("visibility", d => selectedKinds.has(d.source.kind) && selectedKinds.has(d.target.kind) ? 'visible' : 'hidden');
+}*/
 
 // Función para actualizar el diagrama de red
 function updateNetworkDiagram(supportThreshold, confidenceThreshold) {
@@ -408,6 +409,24 @@ function updateNetworkDiagram(supportThreshold, confidenceThreshold) {
         }
 
         function showRuleInfoBox(d) {
+            // Filtrar los enlaces que están relacionados con el nodo de la regla
+            const relatedLinks = links.filter(link => link.source.id === d.id || link.target.id === d.id);
+
+            // Inicializar los valores de antecedentSupport y consequentSupport
+            let antecedentSupport = 0;
+            let consequentSupport = 0;
+
+            // Recorrer los enlaces para calcular los valores de antecedentSupport y consequentSupport
+            relatedLinks.forEach(link => {
+                if (link.source.id === d.id) {
+                    // Si el nodo de la regla es el source del enlace, entonces el target es el Consequent
+                    consequentSupport += link["consequent supp"];
+                } else if (link.target.id === d.id) {
+                    // Si el nodo de la regla es el target del enlace, entonces el source es el Antecedent
+                    antecedentSupport += link["antecedent supp"];
+                }
+            });
+            
             // Encuentra los nodos que tienen este nodo como target o source
             const relatedNodes = links.filter(link => link.source.id === d.id || link.target.id === d.id)
                 .map(link => {
@@ -422,8 +441,8 @@ function updateNetworkDiagram(supportThreshold, confidenceThreshold) {
             html += `Support: ${d.support}<br>`;
             html += `Confidence: ${d.confidence}<br>`;
             html += `Lift: ${d.lift}<br>`;
-            html += `Antecedent support: ${d["antecedent supp"]}<br>`;
-            html += `Consequent support: ${d["consequent supp"]}<br>`;
+            html += `Antecedent support: ${antecedentSupport}<br>`;
+            html += `Consequent support: ${consequentSupport}<br>`;
             html += `<strong>Related Nodes:</strong><ul>`;
             relatedNodes.forEach(r => {
                 html += `<li>${r.relation}: ${r.relatedNode.label}</li>`;

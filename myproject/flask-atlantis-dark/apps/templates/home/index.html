@@ -227,9 +227,11 @@
 			.then(response => {
 				// Verificar si la respuesta tiene un estado exitoso
 				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`);
+					return response.json().then(errorData => {
+						// Lanza el error con el mensaje proveniente del servidor
+						throw new Error(errorData.error);
+					});
 				}
-				return response.text();
 			})
 			.then(data => {
 				// Manejar la respuesta del servidor, si es necesario
