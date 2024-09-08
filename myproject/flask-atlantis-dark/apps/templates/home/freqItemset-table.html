@@ -75,7 +75,6 @@
 					url: urlToTableFreqItemset,
 					type: 'GET',
 					dataSrc: function (json) {
-						console.log(json); // Verificar la respuesta del servidor
 						if (!json.data) {
 							console.error('Error: La respuesta del servidor no contiene la clave "data".');
 							return [];

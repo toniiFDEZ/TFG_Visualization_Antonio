@@ -1,10 +1,8 @@
 import json
-from flask import Blueprint, jsonify, request, current_app, Response, send_file
+from flask import Blueprint, jsonify, request, current_app, Response
 from pathlib import Path
 from apps.models.data import Data
 import os
-import csv
-import io
 
 api_url = '/selection'
 api_name = 'selection'

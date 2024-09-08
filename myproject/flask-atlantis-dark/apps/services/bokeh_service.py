@@ -39,11 +39,11 @@ def get_barchart(data):
     if num_items > 50:
         p = figure(y_range=df['Item'].unique().tolist(), title="Frecuencia de Ítems",
                 toolbar_location=None, tools="",
-                height=num_items*10, width=800)  # Corrected 'height' instead of 'plot_height'
+                height=num_items*10, width=800)
     else:
         p = figure(y_range=df['Item'].unique().tolist(), title="Frecuencia de Ítems",
                 toolbar_location=None, tools="",
-                height=600, width=800)  # Corrected 'height' instead of 'plot_height'
+                height=600, width=800)
     p.hbar(y='Item', right='Frequency', height=0.9, source=source,
            color="navy", line_color="white", fill_alpha=0.6)
 
@@ -80,8 +80,8 @@ def get_barchart(data):
     script, div = components(layout)
 
     # Use a regular expression to remove <script> and </script> tags
-    script_cleaned = re.sub(r'<script[^>]*>', '', script)  # Remove <script> tag
-    script_cleaned = re.sub(r'</script>', '', script_cleaned)  # Remove </script> tag
+    script_cleaned = re.sub(r'<script[^>]*>', '', script) # Quitar <script> tag para que no haya problemas
+    script_cleaned = re.sub(r'</script>', '', script_cleaned) # Quitar <script> tag para que no haya problemas
 
     return jsonify(script=script_cleaned, div=div)
 
@@ -127,7 +127,7 @@ def get_bubble_chart(data):
     script, div = components(column(p))
 
     # Limpiar etiquetas de script para enviar por JSON
-    script_cleaned = re.sub(r'<script[^>]*>', '', script)
-    script_cleaned = re.sub(r'</script>', '', script_cleaned)
+    script_cleaned = re.sub(r'<script[^>]*>', '', script) # Quitar <script> tag para que no haya problemas
+    script_cleaned = re.sub(r'</script>', '', script_cleaned) # Quitar <script> tag para que no haya problemas
 
     return jsonify(script=script_cleaned, div=div)

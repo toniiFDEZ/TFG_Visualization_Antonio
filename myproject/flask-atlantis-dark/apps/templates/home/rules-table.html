@@ -76,7 +76,6 @@
 					url: urlToTable,
 					type: 'GET',
 					dataSrc: function (json) {
-						console.log(json); // Verificar la respuesta del servidor
 						if (!json.data) {
 							console.error('Error: La respuesta del servidor no contiene la clave "data".');
 							return [];
@@ -113,40 +112,6 @@
 				destroy: true // Permite la reinicialización de la tabla
 			});
 		});
-
-		/*$(document).ready(function () {
-			// Fetch data from the server
-			var urlToTable = 'data_nodes/get_table/' + getDataFromRules(localStorage.getItem('global_experiment'))
-			fetch(urlToTable)
-				.then(response => response.json())
-				.then(data => {
-					let columns_order = data.columns_order;
-					let rules = data.rules_list;
-		
-					// Check if there's any data
-					if (rules.length > 0) {
-						// Generate table headers based on the order received from the backend
-						columns_order.forEach(header => {
-							$('#tableHead').append(`<th>${header}</th>`);
-						});
-		
-						// Generate table rows based on the ordered columns
-						rules.forEach(rule => {
-							let row = '<tr>';
-							columns_order.forEach(header => {
-								row += `<td>${rule[header]}</td>`;
-							});
-							row += '</tr>';
-							$('#tableBody').append(row);
-						});
-		
-						// Initialize DataTable with ordering disabled
-						$('#rulesTable').DataTable({
-							ordering: false
-						});
-					}
-				});
-		});*/
     </script>
 
 	<script>

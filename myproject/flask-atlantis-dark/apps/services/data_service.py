@@ -1,7 +1,6 @@
 import os
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from sklearn.preprocessing import KBinsDiscretizer
 from apps.models.data import Data
 import pandas as pd
 import json
@@ -66,7 +65,7 @@ def transform_into_nodes_post():
     # frequent_itemsets = fpmax(df, min_support=minimum_support, use_colnames=True)
     if frequent_itemsets.empty:
             print("No frequent itemsets found. The DataFrame is empty.")
-            return jsonify({"error": "No frequent itemsets found."}), 400
+            return jsonify({"error": "No se encontraron itemsets frecuentes."}), 400
 
     try: 
         rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=confidence_metric)

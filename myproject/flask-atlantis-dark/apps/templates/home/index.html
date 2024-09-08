@@ -234,9 +234,6 @@
 				}
 			})
 			.then(data => {
-				// Manejar la respuesta del servidor, si es necesario
-				console.log(data);
-		
 				// Mostrar notificación de éxito
 				updateFileList(); // Asegúrate de que esta función esté definida correctamente
 				mostrarNotificacion('success', 'Archivo subido con éxito');
@@ -272,8 +269,6 @@
 				return response.text();
 			})
 			.then(data => {
-				// Manejar la respuesta del servidor, si es necesario
-				console.log(data);
 				// Mostrar notificación de éxito
 				if (dataSelected.value == 'Selecciona una opción...' || dataSelected.value == '')
 					mostrarNotificacion('warning','Error al generar reglas');

@@ -6,19 +6,19 @@ import pandas as pd
 
 
 class Data():
+    def clean_infinity(df):
+        # Reemplazar Infinity con el valor máximo de float64
+        max_float = np.finfo(np.float64).max
+        df.replace([np.inf], max_float, inplace=True)
+        df.fillna(0, inplace=True)  # Reemplazar NaN con 0
+        return df
+    
+    
     def get_data(data) -> list:
         data_df = pd.read_csv(f"./apps/static/assets/data/{data}", sep=",", header=None)
         
         return data_df.values.tolist()
     
-    
-    # def find_node(stringToFind, listOfDicts):
-    #     for dict_i in listOfDicts:
-    #         for string_i in dict_i.values():
-    #             if isinstance(string_i, str) and stringToFind in string_i:
-    #                 return True
-    #     return False
-
 
     def allowed_file(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
@@ -27,6 +27,7 @@ class Data():
     def dataframe_to_listoflists(dataframe :pd.DataFrame):
         return dataframe.dropna().values.tolist()
     
+
     def is_numeric(series):
         # Esta función verifica si una serie puede convertirse en un tipo numérico
         try:
@@ -34,6 +35,7 @@ class Data():
             return True
         except ValueError:
             return False
+    
     
     def discretize_columns(dataframe :pd.DataFrame, bins=5):
         header = list(dataframe) # Guardar nombre de las columnas
@@ -51,11 +53,9 @@ class Data():
             if header[ind] != 'id':
                 # Es numérico y tiene más de 3 valores en la columna (para los valores únicos)
                 if Data.is_numeric(dataframe[header[ind]]) and dataframe[header[ind]].nunique() > 3:
-                # if header[ind] != 'diagnosis':
                     disc = KBinsDiscretizer(n_bins=bins, encode='ordinal',
                                             strategy = "quantile").fit_transform(disc)
                     
-                    # if header[ind] != 'Outcome' and header[ind] != 'Sex' and header[ind] != 'FastingBS' and header[ind] != 'HeartDisease':
                     dataframe[header[ind]] = disc
                     if header[ind] == 'Age':
                         dataframe[header[ind]] = pd.cut(dataframe[header[ind]], bins=bins, labels=labels_age, right=False)
@@ -69,58 +69,8 @@ class Data():
         del(ind)
         del(header) 
         del(bins)
-
-
-    # @classmethod
-    # def rules_to_graph(self, rulesCsv: pd.DataFrame):
-    #     nodes = []
-    #     rulesLinks = []
-    #     i = 0; j = 0
-
-    #     for index, row in rulesCsv.iterrows():
-    #         antecedent = str(row["antecedents"])[12:-3].replace("'", "")
-    #         consequent = str(row["consequents"])[12:-3].replace("'", "")
-            
-    #         if not self.find_node(antecedent, nodes):
-    #             nodes.append({
-    #                 'id': antecedent,
-    #                 'label': antecedent
-    #             })
-    #             i = i + 1
-            
-    #         if not self.find_node(consequent, nodes):
-    #             nodes.append({
-    #                 'id': consequent,
-    #                 'label': consequent
-    #             })
-    #             i = i + 1
-
-    #         rulesLinks.append({
-    #             'id': j,
-    #             'source': antecedent,
-    #             'target': consequent,
-    #             'confidence': row["confidence"],
-    #             'support': row["support"],
-    #             'antecedent supp': row["antecedent support"],
-    #             'consequent supp': row["consequent support"],
-    #             'lift': row["lift"]
-    #         })
-    #         j = j + 1
-
-    #     graph = {
-    #         'nodes': nodes,
-    #         'links': rulesLinks
-    #     }
-
-    #     return graph
     
-    def clean_infinity(df):
-        # Reemplazar Infinity con el valor máximo de float64
-        max_float = np.finfo(np.float64).max
-        df.replace([np.inf], max_float, inplace=True)
-        df.fillna(0, inplace=True)  # Reemplazar NaN con 0
-        return df
-    
+
     @classmethod
     def rules_to_graph(self, rulesCsv: pd.DataFrame):
         nodes = []
@@ -215,7 +165,7 @@ class Data():
     def get_group(self, item):
         # Aquí puedes definir la lógica para determinar el grupo
         labels = ['Very_low', 'Low', 'Average', 'High', 'Very_high']
-        labels_age = ['Very_young', 'Teen', 'Adult', 'Old', 'Very_old']
+        labels_age = ['Young', 'Teen', 'Adult', 'Old', 'Very_old']
 
         if any(label in item for label in labels):
             return 1
@@ -241,6 +191,7 @@ class Data():
             return "Other"
 
 
+    ### Método antiguo que no resultó eficiente (parecía interesante para algún gráfico y comentarlo, por eso lo dejo comentado)
     # @classmethod
     # def rules_to_graph(self, rulesCsv: pd.DataFrame):
     #     nodes = []
@@ -303,10 +254,3 @@ class Data():
     #     }
 
     #     return graph
-
-    # @classmethod
-    # def find_node(self, name, nodes):
-    #     for node in nodes:
-    #         if node['name'] == name:
-    #             return node
-    #     return None
