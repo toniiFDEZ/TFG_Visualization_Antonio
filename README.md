@@ -74,9 +74,17 @@ cd myproject
     TFG\Scripts\activate
     ```
 
-### 2.3. Instalar las dependencias
+### 2.3. Instalar las dependencias si prefieres crear un entorno manualmente
 
 Instala las dependencias necesarias que están especificadas en el archivo `requirements.txt`:
+
+> Instálalos via `VENV`  
+
+```bash
+virtualenv env
+source env/bin/activate
+pip3 install -
+```
 
 ```bash
 cd flask-atlantis-dark
